@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head(title=~{::title/mealName()})">
+    <title th:text="#{list.title}">Meals : View all</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments :: navbar"></div>
+    <div class="float-right mt-2">
+        <a class="btn btn-primary btn-sm" href="form.html" th:href="@{/(form)}" th:text="#{list.create}">Create Meal</a>
+    </div>
+    <h4 class="float-left mt-2" th:text="#{list.title}">Meals : View all</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th th:text="#{list.table.id}">ID</th>
+            <th th:text="#{list.table.created}">Created</th>
+            <th th:text="#{list.table.mealSummary}">Summary</th>
+            <!--<th th:text="#{list.table.mealName}">Meal Name</th>
+            <!--<th th:text="#{list.table.mealPrice}">Meal Price</th> 
+            <th th:text="#{list.table.mealType}">Meal Type</th>
+            <th th:text="#{list.table.mealSummary}">Meal Summary</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${meals.empty}">
+            <td colspan="3" th:text="#{list.table.empty}">No meals found</td>
+        </tr>
+        <tr th:each="meal : ${meals}">
+            <td th:text="${meal.id}">1</td>
+            <td th:text="${meal.mealName}">Friet</td>
+            <!-- <td th:text="${meal.mealPrice}">12</td> -->
+            <td th:text="${meal.mealType}">Avondmaal</td>
+            <td><a href="view.html" th:href="@{'/' + ${meal.id}}"
+                   th:text="${meal.mealSummary}"> The summary </a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
