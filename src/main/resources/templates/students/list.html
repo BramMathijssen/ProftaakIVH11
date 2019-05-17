@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head(title=~{::title/studentName()})">
+    <title>Students : View all</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments :: navbar"></div>
+    <div class="float-right mt-2">
+        <a class="btn btn-primary btn-sm" href="form.html" th:href="@{s/(form)}">Create Student</a>
+    </div>
+    <h4 class="float-left mt-2">Students : View all</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Created</th>
+            <th>Student Name</th>
+            <!--<th th:text="#{list.table.mealName}">Meal Name</th>
+            <!--<th th:text="#{list.table.mealPrice}">Meal Price</th>
+            <th th:text="#{list.table.mealType}">Meal Type</th>
+            <th th:text="#{list.table.mealSummary}">Meal Summary</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${students.empty}">
+            <td colspan="3">No students found</td>
+        </tr>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.id}">1</td>
+
+            <td th:text="${student.studentName}">Henk</td>
+            <!-- <td th:text="${meal.mealPrice}">12</td> -->
+            <td><a href="view.html" th:href="@{'/' + ${student.id}}"
+                   th:text="${student.studentName}"> Henkie </a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

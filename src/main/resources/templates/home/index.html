@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head(title=~{::title/text()})">
+    <title>Home</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments :: navbar"></div>
+    <h4 class="float-left mt-2">Welkom bij de studentenhuis applicatie</h4>
+    <div class="clearfix"></div>
+    <p class="float-left mt-2">Klik hieronder om het overzicht van geregistreerde maaltijden of studenten te zien.</p>
+    <div class="clearfix"></div>
+    <div class="float-left mt-2">
+        <a class="btn btn-primary btn-sm" href="list.html" th:href="@{/m}">Meals</a>
+        <a class="btn btn-primary btn-sm" href="list.html" th:href="@{/s}">Students</a>
+    </div>
+
+</div>
+</body>
+</html>

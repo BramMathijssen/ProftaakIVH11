@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/m")
 public class MealController {
 
     private final MealRepository mealRepository;
@@ -44,7 +44,7 @@ public class MealController {
         }
         meal = this.mealRepository.save(meal);
         redirect.addFlashAttribute("globalMessage", "view.success");
-        return new ModelAndView("redirect:/{meal.id}", "meal.id", meal.getId());
+        return new ModelAndView("redirect:/m/{meal.id}", "meal.id", meal.getId());
     }
 
     @RequestMapping("foo")
