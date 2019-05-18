@@ -1,8 +1,11 @@
 package avans.ivh11.proftaak.Controller;
 
 import avans.ivh11.proftaak.Domain.Meal;
+import avans.ivh11.proftaak.Domain.Student;
 import avans.ivh11.proftaak.Repository.MealRepository;
+import avans.ivh11.proftaak.Repository.StudentRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,9 +18,11 @@ import javax.validation.Valid;
 public class MealController {
 
     private final MealRepository mealRepository;
+    private final StudentRepository studentRepository;
 
-    public MealController(MealRepository mealRepository){
+    public MealController(MealRepository mealRepository, StudentRepository studentRepository){
         this.mealRepository = mealRepository;
+        this.studentRepository = studentRepository;
     }
 
     @GetMapping
@@ -32,7 +37,9 @@ public class MealController {
     }
 
     @GetMapping(params = "form")
-    public String createForm(@ModelAttribute Meal meal) {
+    public String createForm(@ModelAttribute Meal meal , Model model) {
+        Iterable<Student> students = this.studentRepository.findAll();
+        model.addAttribute("students" , students);
         return "meals/form";
     }
 
@@ -43,6 +50,7 @@ public class MealController {
             return new ModelAndView("meals/form", "formErrors", result.getAllErrors());
         }
         meal = this.mealRepository.save(meal);
+
         redirect.addFlashAttribute("globalMessage", "view.success");
         return new ModelAndView("redirect:/m/{meal.id}", "meal.id", meal.getId());
     }

@@ -3,6 +3,7 @@ package avans.ivh11.proftaak.Domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -23,8 +24,11 @@ public class Meal {
 
     private Calendar created = Calendar.getInstance();
 
+    @OneToOne
+    private Student mealCook;
 
-//    private Student studentCook;
+
+    //    private Student studentCook;
 //
 //    private ArrayList<Student> studentGuestList;
 
@@ -76,5 +80,14 @@ public class Meal {
 
     public Calendar getCreated() {
         return created;
+    }
+
+    public void setMealCook(Student mealCook) {
+        this.mealCook = mealCook;
+    }
+
+    public Student getMealCook() {
+
+        return mealCook;
     }
 }

@@ -18,6 +18,7 @@
             <th>Meal Name</th>
             <th>Meal Type</th>
             <th>Meal Price</th>
+            <th>Meal Cook</th>
             <th>Summary</th>
             <!--<th th:text="#{list.table.mealName}">Meal Name</th>
             <!--<th th:text="#{list.table.mealPrice}">Meal Price</th> 
@@ -37,6 +38,7 @@
             <!-- <td th:text="${meal.mealPrice}">12</td> -->
             <td th:text="${meal.mealType}">Avondmaal</td>
             <td th:text="${meal.mealPrice}">3</td>
+            <td th:text="${meal.mealCook}">Henk</td>
             <td><a href="view.html" th:href="@{'/' + ${meal.id}}"
                    th:text="${meal.mealSummary}"> The summary </a></td>
         </tr>
