@@ -2,10 +2,7 @@ package avans.ivh11.proftaak.Domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Calendar;
 
 @Entity
@@ -19,8 +16,11 @@ public class Student {
 
     private Calendar created = Calendar.getInstance();
 
-    @OneToOne(mappedBy = "mealCook")
+    //@OneToMany(mappedBy = "mealCook")
+    //displays meal_id NULL in the database.
+    //can implement a list of meals with a @OneToMany relationship to couple multiple meals to 1 student to check in the view.
     @JsonBackReference
+    @ManyToOne
     private Meal meal;
 
 
