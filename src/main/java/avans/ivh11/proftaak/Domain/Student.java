@@ -1,5 +1,7 @@
 package avans.ivh11.proftaak.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,6 +18,10 @@ public class Student {
     private String studentName;
 
     private Calendar created = Calendar.getInstance();
+
+    @OneToOne(mappedBy = "mealCook")
+    @JsonBackReference
+    private Meal meal;
 
 
     //private boolean isMealCook;
@@ -57,6 +63,15 @@ public class Student {
     public void setCreated(Calendar created) {
 
         this.created = created;
+    }
+
+    public void setMeal(Meal meal) {
+        this.meal = meal;
+    }
+
+    public Meal getMeal() {
+
+        return meal;
     }
 
 

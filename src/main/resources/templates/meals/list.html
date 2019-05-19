@@ -38,7 +38,7 @@
             <!-- <td th:text="${meal.mealPrice}">12</td> -->
             <td th:text="${meal.mealType}">Avondmaal</td>
             <td th:text="${meal.mealPrice}">3</td>
-            <td th:text="${meal.mealCook}">Henk</td>
+            <td th:text="${meal.mealCook.getStudentName()}">Henk</td>
             <td><a href="view.html" th:href="@{'/' + ${meal.id}}"
                    th:text="${meal.mealSummary}"> The summary </a></td>
         </tr>

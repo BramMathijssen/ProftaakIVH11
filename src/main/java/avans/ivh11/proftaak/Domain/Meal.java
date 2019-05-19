@@ -1,9 +1,6 @@
 package avans.ivh11.proftaak.Domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -25,10 +22,10 @@ public class Meal {
     private Calendar created = Calendar.getInstance();
 
     @OneToOne
+    @JoinColumn(name = "meal_cook_id")
     private Student mealCook;
 
-
-    //    private Student studentCook;
+//    private Student studentCook;
 //
 //    private ArrayList<Student> studentGuestList;
 
