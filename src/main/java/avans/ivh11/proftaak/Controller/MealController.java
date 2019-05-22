@@ -25,6 +25,7 @@ public class MealController {
         this.studentRepository = studentRepository;
     }
 
+
     @GetMapping
     public ModelAndView list(){
         Iterable<Meal> meals = this.mealRepository.findAll();

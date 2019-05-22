@@ -1,6 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head (title)">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            var selItem = localStorage.getItem("locale");
+            $('#locales').val(selItem ? selItem : 'en');
+            $("#locales").change(function() {
+                var selectedOption = $('#locales').val();
+                if (selectedOption) {
+                    window.location.replace('?lang=' + selectedOption);
+                    localStorage.setItem("locale", selectedOption);
+                }
+            });
+        });
+    </script>
+
+        /*$(document).ready(function() {
+            $("#locales").change(function () {
+                var selectedOption = $('#locales').val();
+                if (selectedOption !== ''){
+                    window.location.replace('locale?lang=' + selectedOption);
+                }
+            });
+        }); */
     <title th:text="${title}">Fragments</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
           href="../../css/bootstrap.min.css" />
@@ -13,6 +37,13 @@
             <li class="nav-item"><a class="nav-link" th:href="@{/m}" href="meals.html">Meals</a></li>
             <li class="nav-item"><a class="nav-link" th:href="@{/s}" href="students.html">Students</a></li>
         </ul>
+        <span th:text="#{lang.change}"></span>:
+        <select id="locales">
+            <option value=""></option>
+            <option value="en" th:text="#{lang.eng}"></option>
+            <option value="nl" th:text="#{lang.nl}"></option>
+            <option value="us" th:text="#{lang.us}"></option>
+        </select>
     </nav>
 </div>
 </body>
