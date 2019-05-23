@@ -16,15 +16,6 @@
             });
         });
     </script>
-
-        /*$(document).ready(function() {
-            $("#locales").change(function () {
-                var selectedOption = $('#locales').val();
-                if (selectedOption !== ''){
-                    window.location.replace('locale?lang=' + selectedOption);
-                }
-            });
-        }); */
     <title th:text="${title}">Fragments</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
           href="../../css/bootstrap.min.css" />
@@ -34,13 +25,12 @@
     <nav th:fragment="navbar" class="navbar navbar-dark bg-primary">
         <a class="navbar-brand" href="index.html" th:href="@{/}">Studentenhuis</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item"><a class="nav-link" th:href="@{/m}" href="meals.html">Meals</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/s}" href="students.html">Students</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/m}" href="meals.html" th:text="#{navbar.meals}">Meals</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/s}" href="students.html" th:text="#{navbar.students}">Students</a></li>
         </ul>
         <span th:text="#{lang.change}"></span>:
         <select id="locales">
             <option value=""></option>
-            <option value="en" th:text="#{lang.eng}"></option>
             <option value="nl" th:text="#{lang.nl}"></option>
             <option value="us" th:text="#{lang.us}"></option>
         </select>

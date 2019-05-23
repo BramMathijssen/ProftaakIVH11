@@ -6,14 +6,13 @@
 <body>
 <div class="container">
     <div th:replace="fragments :: navbar"></div>
-    <h4 class="float-left mt-2" th:text="#{index.welcome}">TEST123</h4>
-    <h4 class="float-left mt-2">Welkom bij de studentenhuis applicatie</h4>
+    <h4 class="float-left mt-2" th:text="#{index.welcome}">Welkom bij de studentenhuis applicatie</h4>
     <div class="clearfix"></div>
-    <p class="float-left mt-2">Klik hieronder om het overzicht van geregistreerde maaltijden of studenten te zien.</p>
+    <p class="float-left mt-2" th:text="#{index.subtitle}">Klik hieronder om het overzicht van geregistreerde maaltijden of studenten te zien.</p>
     <div class="clearfix"></div>
     <div class="float-left mt-2">
-        <a class="btn btn-primary btn-sm" href="list.html" th:href="@{/m}">Meals</a>
-        <a class="btn btn-primary btn-sm" href="list.html" th:href="@{/s}">Students</a>
+        <a class="btn btn-primary btn-sm" th:text="#{index.meals}" href="list.html" th:href="@{/m}">Meals</a>
+        <a class="btn btn-primary btn-sm" th:text="#{index.students}" href="list.html" th:href="@{/s}">Students</a>
     </div>
 
 </div>

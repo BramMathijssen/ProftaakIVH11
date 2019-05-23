@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head(title=~{::title/text()})">
-    <title th:text="#{view.title}">Students : View</title>
+    <title th:text="#{students.view.title}">Students : View</title>
 </head>
 <body>
 <div class="container">
@@ -9,14 +9,14 @@
     <div class="float-right mt-2">
         <a class="btn btn-primary btn-sm" href="list.html" th:href="@{/s}">Students</a>
     </div>
-    <h4 class="float-left mt-2">Students : View</h4>
+    <h4 class="float-left mt-2" th:text="#{students.view.title}">Students : View</h4>
     <div class="clearfix"></div>
-    <div class="alert alert-success" th:if="${globalMessage}">Student succesfully added.</div>
+    <div class="alert alert-success" th:if="${globalMessage}" th:text="#{${globalMessage}}">Student succesfully added.</div>
     <div class="card">
         <div class="card-body">
             <h4 class="card-title" th:text="${student.id + ': ' + student.studentName}">123 - A short summary...</h4>
-            <a class="card-link" href="students" th:href="@{'/delete/' + ${student.id}}">Delete</a>
-            <a class="card-link" href="form.html" th:href="@{'/modify/' + ${student.id}}">Edit</a>
+            <a class="card-link" href="students" th:href="@{'/delete/' + ${student.id}}" th:text="#{students.view.delete}">Delete</a>
+            <a class="card-link" href="form.html" th:href="@{'/modify/' + ${student.id}}" th:text="#{students.view.modify}">Edit</a>
         </div>
     </div>
 </div>

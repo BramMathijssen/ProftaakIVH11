@@ -23,10 +23,7 @@ public class Student {
     @ManyToOne
     private Meal meal;
 
-
     //private boolean isMealCook;
-
-
 
     //private boolean isMealGuest;
 

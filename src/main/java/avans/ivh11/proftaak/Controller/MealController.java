@@ -52,7 +52,7 @@ public class MealController {
         }
         meal = this.mealRepository.save(meal);
 
-        redirect.addFlashAttribute("globalMessage", "view.success");
+        redirect.addFlashAttribute("globalMessage", "meals.view.success");
         return new ModelAndView("redirect:/m/{meal.id}", "meal.id", meal.getId());
     }
 
