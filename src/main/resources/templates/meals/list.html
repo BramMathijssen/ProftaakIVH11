@@ -20,17 +20,13 @@
             <th th:text="#{meals.list.table.mealPrice}">Meal Price</th>
             <th th:text="#{meals.list.table.mealCook}">Meal Cook</th>
             <th th:text="#{meals.list.table.mealSummary}">Summary</th>
-            <!--<th th:text="#{list.table.mealName}">Meal Name</th>
-            <!--<th th:text="#{list.table.mealPrice}">Meal Price</th> 
-            <th th:text="#{list.table.mealType}">Meal Type</th>
-            <th th:text="#{list.table.mealSummary}">Meal Summary</th>-->
         </tr>
         </thead>
         <tbody>
-        <tr th:if="${meals.empty}">
-            <td colspan="3" th:text="#{meals.list.table.empty}">No meals found</td>
+        <tr th:if="${mealPage.empty}">
+            <td colspan="7" th:text="#{meals.list.table.empty}">No meals found</td>
         </tr>
-        <tr th:each="meal : ${meals}">
+        <tr th:each="meal : ${mealPage}">
             <td th:text="${meal.id}">1</td>
             <td th:text="${#calendars.format(meal.created)}">July 11,
                 2012 2:17:16 PM CDT</td>
@@ -44,6 +40,12 @@
         </tr>
         </tbody>
     </table>
+    <div th:if="${mealPage.totalPages > 0}" class="pagination"
+         th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/m(size=${mealPage.size}, page=${pageNumber})}"
+           th:text=${pageNumber}
+           th:class="${pageNumber==mealPage.number + 1} ? active"></a>
+    </div>
 </div>
 </body>
 </html>

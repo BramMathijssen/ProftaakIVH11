@@ -4,6 +4,10 @@ import avans.ivh11.proftaak.Domain.Meal;
 import avans.ivh11.proftaak.Domain.Student;
 import avans.ivh11.proftaak.Repository.MealRepository;
 import avans.ivh11.proftaak.Repository.StudentRepository;
+import avans.ivh11.proftaak.Service.MealService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,10 +16,17 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping("/m")
 public class MealController {
+
+    @Autowired
+    private MealService mealService;
 
     private final MealRepository mealRepository;
     private final StudentRepository studentRepository;
@@ -27,9 +38,24 @@ public class MealController {
 
 
     @GetMapping
-    public ModelAndView list(){
+    public ModelAndView list(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(2);
+
+        Page<Meal> mealPage = mealService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+
+        model.addAttribute("mealPage", mealPage);
+
+        int totalPages = mealPage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
         Iterable<Meal> meals = this.mealRepository.findAll();
-        return new ModelAndView("meals/list" , "meals", meals);
+        return new ModelAndView("meals/list" , "mealPage", mealPage);
     }
 
     @GetMapping("{id}")
