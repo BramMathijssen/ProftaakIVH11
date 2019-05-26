@@ -29,7 +29,6 @@ public class MealService {
         return (ArrayList<Meal>) this.mealRepository.findAll();
     }
 
-
     public Page<Meal> findPaginated(Pageable pageable) {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();

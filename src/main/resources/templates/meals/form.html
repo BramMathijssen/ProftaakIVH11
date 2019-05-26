@@ -30,7 +30,8 @@
         </div>
         <div class="form-group">
             <label for="mealPrice" th:text="#{meals.form.mealPrice}">Meal Price</label>
-            <input type="text" th:field="*{mealPrice}" th:class="${'form-control' + (#fields.hasErrors('mealName') ? ' is-invalid' : '')}">
+            <!--/* <input type="text" th:field="*{mealPrice}" th:class="${'form-control' + (#fields.hasErrors('mealPrice') ? ' is-invalid' : '')}"> */-->
+            <input type="text" th:field="*{mealPrice}" th:class="${'form-control' + (#fields.hasErrors('mealPrice') ? ' is-invalid' : '')}">
         </div>
         <div class="form-group">
             <label for="mealCook" th:text="#{meals.form.mealCook}">Meal Cook</label>

@@ -54,7 +54,7 @@ public class MealController {
             model.addAttribute("pageNumbers", pageNumbers);
         }
 
-        Iterable<Meal> meals = this.mealRepository.findAll();
+        //Iterable<Meal> meals = this.mealRepository.findAll();
         return new ModelAndView("meals/list" , "mealPage", mealPage);
     }
 
