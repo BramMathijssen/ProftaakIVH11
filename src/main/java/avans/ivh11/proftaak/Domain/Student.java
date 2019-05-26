@@ -2,20 +2,26 @@ package avans.ivh11.proftaak.Domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Student {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @NotEmpty(message = "Student Name is required.")
     private String studentName;
 
     private Calendar created = Calendar.getInstance();
@@ -26,6 +32,7 @@ public class Student {
     @JsonBackReference
     @ManyToOne
     private Meal meal;
+
 
     //private boolean isMealCook;
 

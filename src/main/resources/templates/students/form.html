@@ -13,7 +13,7 @@
     <div class="clearfix"></div>
     <form id="studentForm" th:action="@{/s/(form)}" th:object="${student}" action="#" method="post">
         <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
-            <p th:each="error : ${#fields.errors('*')}" class="m-0" th:text="#{error}">Validation error</p>
+            <p th:each="error : ${#fields.errors('*')}" class="m-0" th:text="${error}">Validation error</p>
         </div>
         <input type="hidden" th:field="*{id}" th:class="${'form-control' + (#fields.hasErrors('id') ? ' is-invalid' : '')}"/>
         <div class="form-group">

@@ -71,7 +71,7 @@ public class MealController {
     }
 
     @PostMapping
-    public ModelAndView create(@Valid Meal meal, BindingResult result,
+    public ModelAndView create(@Valid Meal meal,  BindingResult result,
                                RedirectAttributes redirect) {
         if (result.hasErrors()) {
             return new ModelAndView("meals/form", "formErrors", result.getAllErrors());

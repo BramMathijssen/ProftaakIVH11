@@ -2,11 +2,14 @@ package avans.ivh11.proftaak.Domain;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,27 +17,30 @@ import java.util.Calendar;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Meal {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    //@NotBlank(message = "Name is mandatory")
+    @NotEmpty(message = "Meal Name is required")
     private String mealName;
 
     @NotNull(message = "Price is required.")
-    @Min(value = 0 , message = "Must be larger than 0") // at least 0
     private int mealPrice;
 
+    @NotEmpty(message = "Meal Type is required")
     private String mealType;
 
+    @NotEmpty(message = "Summary is required")
     private String mealSummary;
 
     private Calendar created = Calendar.getInstance();
 
     @OneToOne
-    @JoinColumn(name = "meal_cook_id")
+    //@JoinColumn(name = "meal_cook_id")
+    @Valid
     private Student mealCook;
 
 //    private Student studentCook;
