@@ -45,6 +45,8 @@ public class Meal {
 
 //    private Student studentCook;
 //
+    //verantwoordelijkheid ligt bij de One kant
+//    @OneToMany
 //    private ArrayList<Student> studentGuestList;
 
 
