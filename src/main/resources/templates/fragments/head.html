@@ -3,7 +3,6 @@
 <head th:fragment="head (title)">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
-
         $(document).ready(function() {
             var selItem = localStorage.getItem("locale");
             $('#locales').val(selItem ? selItem : 'en');
@@ -21,23 +20,5 @@
           href="../../css/custom.css" />
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
           href="../../css/bootstrap.min.css" />
-
 </head>
-<body>
-<div class="container">
-    <nav th:fragment="navbar" class="navbar navbar-dark bg-primary">
-        <a class="navbar-brand" href="index.html" th:href="@{/}">Studentenhuis</a>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item"><a class="nav-link" th:href="@{/m}" href="meals.html" th:text="#{navbar.meals}">Meals</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/s}" href="students.html" th:text="#{navbar.students}">Students</a></li>
-        </ul>
-        <span th:text="#{lang.change}"></span>:
-        <select id="locales">
-            <option value=""></option>
-            <option value="nl" th:text="#{lang.nl}"></option>
-            <option value="us" th:text="#{lang.us}"></option>
-        </select>
-    </nav>
-</div>
-</body>
 </html>

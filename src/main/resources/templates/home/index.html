@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head(title=~{::title/text()})">
-    <title>Home</title>
+<head th:replace="fragments/head :: head(title=~{::title/text()})">
+    <title th:text="#{index.title}">Home Page</title>
 </head>
 <body>
-<div class="container">
-    <div th:replace="fragments :: navbar"></div>
-    <h4 class="float-left mt-2" th:text="#{index.welcome}">Welkom bij de studentenhuis applicatie</h4>
-    <div class="clearfix"></div>
-    <p class="float-left mt-2" th:text="#{index.subtitle}">Klik hieronder om het overzicht van geregistreerde maaltijden of studenten te zien.</p>
-    <div class="clearfix"></div>
-    <div class="float-left mt-2">
-        <a class="btn btn-primary btn-sm" th:text="#{index.meals}" href="list.html" th:href="@{/m}">Meals</a>
-        <a class="btn btn-primary btn-sm" th:text="#{index.students}" href="list.html" th:href="@{/s}">Students</a>
-    </div>
-
-</div>
+    <div th:replace="fragments/navbar :: navbar"></div>
+        <div class="container">
+            <h4 class="float-left mt-2" th:text="#{index.welcome}">Welkom bij de studentenhuis applicatie</h4>
+            <div class="clearfix"></div>
+            <p class="float-left mt-2" th:text="#{index.subtitle}">Klik hieronder om het overzicht van geregistreerde maaltijden of studenten te zien.</p>
+            <p class="float-left mt-2 schijt"> Ik mot flink schijt'n</p>
+            <div class="clearfix"></div>
+            <div class="float-left mt-2">
+                <a class="btn btn-primary btn-sm" th:text="#{index.meals}" href="list.html" th:href="@{/m}">Meals</a>
+                <a class="btn btn-primary btn-sm" th:text="#{index.students}" href="list.html" th:href="@{/s}">Students</a>
+            </div>
+        </div>
+    <footer class="footer">
+        <div th:replace="fragments/footer :: footer"></div>
+    </footer>
 </body>
 </html>
