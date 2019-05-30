@@ -1,7 +1,9 @@
 package avans.ivh11.proftaak.Controller;
 
+import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Domain.Meal;
 import avans.ivh11.proftaak.Domain.Student;
+import avans.ivh11.proftaak.Repository.DishRepository;
 import avans.ivh11.proftaak.Repository.MealRepository;
 import avans.ivh11.proftaak.Repository.StudentRepository;
 import avans.ivh11.proftaak.Service.MealService;
@@ -30,17 +32,19 @@ public class MealController {
 
     private final MealRepository mealRepository;
     private final StudentRepository studentRepository;
+    private final DishRepository dishRepository;
 
-    public MealController(MealRepository mealRepository, StudentRepository studentRepository){
+    public MealController(MealRepository mealRepository, StudentRepository studentRepository, DishRepository dishRepository){
         this.mealRepository = mealRepository;
         this.studentRepository = studentRepository;
+        this.dishRepository = dishRepository;
     }
 
 
     @GetMapping
     public ModelAndView list(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         int currentPage = page.orElse(1);
-        int pageSize = size.orElse(2);
+        int pageSize = size.orElse(5);
 
         Page<Meal> mealPage = mealService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
 
@@ -66,6 +70,8 @@ public class MealController {
     @GetMapping(params = "form")
     public String createForm(@ModelAttribute Meal meal , Model model) {
         Iterable<Student> students = this.studentRepository.findAll();
+        Iterable<Dish> dishes = this.dishRepository.findAll();
+        model.addAttribute("dishes" , dishes);
         model.addAttribute("students" , students);
         return "meals/form";
     }

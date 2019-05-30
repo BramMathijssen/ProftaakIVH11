@@ -16,6 +16,8 @@
             <th th:text="#{students.list.table.id}">ID</th>
             <th th:text="#{students.list.table.created}">Created</th>
             <th th:text="#{students.list.table.studentName}">Student Name</th>
+            <th th:text="#{students.list.table.studentCook}">Student Cook</th>
+
         </tr>
         </thead>
         <tbody>
@@ -31,9 +33,10 @@
             <!-- <td th:text="${meal.mealPrice}">12</td> -->
             <td><a href="view.html" th:href="@{'/' + ${student.id}}"
                    th:text="${student.studentName}"> Henkie </a></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-</body>
-</html>
+            <!--  <td th:text="${student.meals.}">1</td> -->
+         </tr>
+         </tbody>
+     </table>
+ </div>
+ </body>
+ </html>

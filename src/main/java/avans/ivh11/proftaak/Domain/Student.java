@@ -10,6 +10,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -25,12 +26,19 @@ public class Student {
 
     private Calendar created = Calendar.getInstance();
 
-    //@OneToMany(mappedBy = "mealCook")
+    //@ManyToOne
+    //private Meal meals;
     //displays meal_id NULL in the database.
     //can implement a list of meals with a @OneToMany relationship to couple multiple meals to 1 student to check in the view.
-    @JsonBackReference
-    @ManyToOne
-    private Meal meal;
+    //@JsonBackReference
+    //@JoinColumn(name = "meal_id")
+    @OneToMany(
+            mappedBy = "mealCook",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Meal> meals = new ArrayList<>();
+    //@OneToOne(cascade = javax.persistence.CascadeType.ALL ,mappedBy = "mealCook", orphanRemoval = true)
 
 
     //private boolean isMealCook;

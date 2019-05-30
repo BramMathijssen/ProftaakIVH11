@@ -21,6 +21,14 @@
             <input type="text" th:field="*{mealName}" th:class="${'form-control' + (#fields.hasErrors('mealName') ? ' is-invalid' : '')}">
         </div>
         <div class="form-group">
+            <label for="mealDishes" th:text="#{meals.form.mealCook}">Meal Cook</label>
+            <select th:field="*{mealDishes}" th:class="${'form-control' + (#fields.hasErrors('mealDishes') ? ' is-invalid' : '')}">
+                <option th:each="dish : ${dishes}"
+                        th:value="${dish.id}"
+                        th:text="${dish.dishName}">Name</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="mealType" th:text="#{meals.form.mealType}">Meal Type</label>
             <select id="mealType" th:field="*{mealType}" th:class="${'form-control' + (#fields.hasErrors('mealType') ? ' is-invalid' : '')}">
                 <option value="Ontbijt" selected="selected">Ontbijt</option>

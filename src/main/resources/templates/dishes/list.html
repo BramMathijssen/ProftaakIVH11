@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head(title=~{::title/dishName()})">
+    <title th:text="#{dishes.list.title}">Dishes : View all</title>
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments :: navbar"></div>
+    <div class="float-right mt-2">
+        <a class="btn btn-primary btn-sm" href="form.html" th:href="@{d/(form)}" th:text="#{dishes.list.create}">Create Dish</a>
+    </div>
+    <h4 class="float-left mt-2" th:text="#{dishes.list.title}">Dishes : View all</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th th:text="#{dishes.list.table.id}">ID</th>
+            <th th:text="#{dishes.list.table.created}">Created</th>
+            <th th:text="#{dishes.list.table.dishName}">Dish Name</th>
+            <th th:text="#{dishes.list.table.dishType}">Dish Type</th>
+            <th th:text="#{dishes.list.table.dishRecipe}">Recept</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${dishes.empty}">
+            <td colspan="7" th:text="#{dishes.list.table.empty}">No dishes found</td>
+        </tr>
+        <tr th:each="dish : ${dishes}">
+            <td th:text="${dish.id}">1</td>
+            <td th:text="${#calendars.format(dish.created)}">July 11,
+                2012 2:17:16 PM CDT</td>
+            <td th:text="${dish.dishName}">Friet</td>
+            <td th:text="${dish.dishType}">Avondmaal</td>
+            <td><a href="view.html" th:href="@{'/d' + ${dish.id}}"
+                   th:text="${dish.dishRecipe}"> The summary </a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

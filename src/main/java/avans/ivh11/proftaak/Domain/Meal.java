@@ -13,6 +13,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 @Entity
 @Getter
@@ -38,9 +39,12 @@ public class Meal {
 
     private Calendar created = Calendar.getInstance();
 
-    @OneToOne
-    //@JoinColumn(name = "meal_cook_id")
-    @Valid
+    @ManyToMany
+    private List<Dish> mealDishes = new ArrayList<>();
+
+
+    @JoinColumn(name = "student_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     private Student mealCook;
 
 //    private Student studentCook;
