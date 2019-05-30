@@ -23,9 +23,9 @@
         <div class="form-group">
             <label for="dishType" th:text="#{dishes.form.dishType}">Dish Type</label>
             <select id="dishType" th:field="*{dishType}" th:class="${'form-control' + (#fields.hasErrors('dishType') ? ' is-invalid' : '')}">
-                <option value="Ontbijt" selected="selected">Ontbijt</option>
-                <option value="Lunch" selected="selected">Lunch</option>
-                <option value="Avondeten" selected="selected">Avondeten</option>
+                <option value="Voorgerecht" selected="selected">Voorgerecht</option>
+                <option value="Hoofdgerecht" selected="selected">Hoofdgerecht</option>
+                <option value="Nagerecht" selected="selected">Nagerecht</option>
             </select>
         </div>
         <div class="form-group">

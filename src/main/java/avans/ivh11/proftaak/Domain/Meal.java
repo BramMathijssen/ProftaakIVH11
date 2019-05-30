@@ -11,9 +11,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Getter
@@ -39,13 +37,24 @@ public class Meal {
 
     private Calendar created = Calendar.getInstance();
 
-    @ManyToMany
-    private List<Dish> mealDishes = new ArrayList<>();
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "meal_dish",
+            joinColumns = @JoinColumn(name = "meal_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id")
+    )
+    private Set<Dish> DishesList = new HashSet<>();
+    //private List<Dish> mealDishes = new ArrayList<>();
+
 
 
     @JoinColumn(name = "student_id")
     @ManyToOne(cascade = CascadeType.ALL)
     private Student mealCook;
+
 
 //    private Student studentCook;
 //

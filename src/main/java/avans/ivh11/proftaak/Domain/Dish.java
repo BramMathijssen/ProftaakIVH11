@@ -10,9 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Getter
@@ -34,8 +32,9 @@ public class Dish {
 
     private String dishRecipe;
 
-    @ManyToMany
-    private List<Meal> meals = new ArrayList<>();
+    @ManyToMany(mappedBy = "mealDishes")
+    private Set<Meal> mealsList = new HashSet<>();
+    //private List<Meal> meals = new ArrayList<>();
 
 //    could multiple dishPrice times amount of guests and store it as mealPrice total
 //    @NotNull(message = "Price is required.")

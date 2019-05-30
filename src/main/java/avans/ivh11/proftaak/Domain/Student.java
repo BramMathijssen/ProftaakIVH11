@@ -7,10 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Getter
@@ -37,7 +34,7 @@ public class Student {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Meal> meals = new ArrayList<>();
+    private Set<Meal> meals = new HashSet<>();
     //@OneToOne(cascade = javax.persistence.CascadeType.ALL ,mappedBy = "mealCook", orphanRemoval = true)
 
 
