@@ -32,7 +32,7 @@ public class Dish {
 
     private String dishRecipe;
 
-    @ManyToMany(mappedBy = "mealDishes")
+    @ManyToMany(mappedBy = "dishesList")
     private Set<Meal> mealsList = new HashSet<>();
     //private List<Meal> meals = new ArrayList<>();
 

@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label for="mealDishes" th:text="#{meals.form.mealDish}">Meal Cook</label>
-            <select th:field="*{mealDishes}" th:class="${'form-control' + (#fields.hasErrors('mealDishes') ? ' is-invalid' : '')}">
+            <select th:field="*{dishesList}" th:class="${'form-control' + (#fields.hasErrors('dishesList') ? ' is-invalid' : '')}">
                 <option th:each="dish : ${dishes}"
                         th:value="${dish.id}"
                         th:text="${dish.dishName}">Name</option>

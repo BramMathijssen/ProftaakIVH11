@@ -39,7 +39,7 @@
             <td th:text="${meal.mealType}">Avondmaal</td>
             <td th:text="${meal.mealPrice}">3</td>
             <td th:text="${meal.mealCook.getStudentName()}">Henk</td>
-            <td><a href="view.html" th:href="@{'/' + ${meal.id}}"
+            <td><a href="view.html" th:href="@{'/m/' + ${meal.id}}"
                    th:text="${meal.mealSummary}"> The summary </a></td>
         </tr>
 

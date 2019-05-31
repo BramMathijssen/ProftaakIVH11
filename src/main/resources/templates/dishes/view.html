@@ -18,8 +18,8 @@
             <!--<h6 class="card-subtitle mb-2 text-muted" th:text="${#calendars.format(message.created)}">July 11, 2012 2:17:16 PM CDT</h6> -->
             <p class="card-text" th:text="${dish.dishType}">Dish Type.</p>
             <p class="card-text" th:text="${dish.dishRecipe}">Dish Recipe</p>
-            <a class="card-link" href="dishes" th:href="@{'/delete/' + ${dish.id}}" th:text="#{dishes.view.delete}">Delete</a>
-            <a class="card-link" href="form.html" th:href="@{'/modify/' + ${dish.id}}" th:text="#{dishes.view.modify}">Edit</a>
+            <a class="card-link" href="dishes" th:href="@{'/d/delete/' + ${dish.id}}" th:text="#{dishes.view.delete}">Delete</a>
+            <a class="card-link" href="form.html" th:href="@{'/d/modify/' + ${dish.id}}" th:text="#{dishes.view.modify}">Edit</a>
         </div>
     </div>
 </div>

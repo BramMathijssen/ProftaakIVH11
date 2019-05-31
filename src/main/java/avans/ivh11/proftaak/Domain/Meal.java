@@ -38,15 +38,8 @@ public class Meal {
     private Calendar created = Calendar.getInstance();
 
 
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "meal_dish",
-            joinColumns = @JoinColumn(name = "meal_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_id")
-    )
-    private Set<Dish> DishesList = new HashSet<>();
+    @ManyToMany
+    private Set<Dish> dishesList = new HashSet<>();
     //private List<Dish> mealDishes = new ArrayList<>();
 
 

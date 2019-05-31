@@ -30,7 +30,7 @@
                 2012 2:17:16 PM CDT</td>
             <td th:text="${dish.dishName}">Friet</td>
             <td th:text="${dish.dishType}">Avondmaal</td>
-            <td><a href="view.html" th:href="@{'/d' + ${dish.id}}"
+            <td><a href="view.html" th:href="@{'/d/' + ${dish.id}}"
                    th:text="${dish.dishRecipe}"> The summary </a></td>
         </tr>
         </tbody>

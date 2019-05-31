@@ -15,8 +15,8 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title" th:text="${student.id + ': ' + student.studentName}">123 - A short summary...</h4>
-            <a class="card-link" href="students" th:href="@{'/delete/' + ${student.id}}" th:text="#{students.view.delete}">Delete</a>
-            <a class="card-link" href="form.html" th:href="@{'/modify/' + ${student.id}}" th:text="#{students.view.modify}">Edit</a>
+            <a class="card-link" href="students" th:href="@{'/s/delete/' + ${student.id}}" th:text="#{students.view.delete}">Delete</a>
+            <a class="card-link" href="form.html" th:href="@{'/s/modify/' + ${student.id}}" th:text="#{students.view.modify}">Edit</a>
         </div>
     </div>
 </div>
