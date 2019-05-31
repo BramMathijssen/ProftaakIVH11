@@ -3,6 +3,7 @@ package avans.ivh11.proftaak.Domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,8 +37,22 @@ public class Dish {
     private Set<Meal> mealsList = new HashSet<>();
     //private List<Meal> meals = new ArrayList<>();
 
+
+    public String getDishName() {
+        return dishName;
+    }
+
+    private String getDishNameByType(String dishType){
+        String voorgerecht = "Voorgerecht";
+        if(dishType == voorgerecht){
+            return dishName;
+        }
+        return dishName;
+    }
+
 //    could multiple dishPrice times amount of guests and store it as mealPrice total
 //    @NotNull(message = "Price is required.")
 //    private int dishPrice;
+
 
 }

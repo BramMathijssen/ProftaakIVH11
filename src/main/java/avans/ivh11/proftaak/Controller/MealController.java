@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,14 +42,21 @@ public class MealController {
     }
 
 
+
     @GetMapping
     public ModelAndView list(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(5);
 
         Page<Meal> mealPage = mealService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+        Iterable<Dish> dishesStarters = this.dishRepository.findDishesByType("Voorgerecht");
+        Iterable<Dish> dishesMaincourses = this.dishRepository.findDishesByType("Hoofdgerecht");
+        Iterable<Dish> dishesDeserts = this.dishRepository.findDishesByType("Nagerecht");
 
         model.addAttribute("mealPage", mealPage);
+        model.addAttribute("dishesStarters" , dishesStarters);
+        model.addAttribute("dishesMaincourses" , dishesMaincourses);
+        model.addAttribute("dishesDeserts" , dishesDeserts);
 
         int totalPages = mealPage.getTotalPages();
         if (totalPages > 0) {
@@ -71,8 +79,14 @@ public class MealController {
     public String createForm(@ModelAttribute Meal meal , Model model) {
         Iterable<Student> students = this.studentRepository.findAll();
         Iterable<Dish> dishes = this.dishRepository.findAll();
-        model.addAttribute("dishes" , dishes);
+        Iterable<Dish> dishesStarters = this.dishRepository.findDishesByType("Voorgerecht");
+        Iterable<Dish> dishesMaincourses = this.dishRepository.findDishesByType("Hoofdgerecht");
+        Iterable<Dish> dishesDeserts = this.dishRepository.findDishesByType("Nagerecht");
         model.addAttribute("students" , students);
+        model.addAttribute("dishes" , dishes);
+        model.addAttribute("dishesStarters" , dishesStarters);
+        model.addAttribute("dishesMaincourses" , dishesMaincourses);
+        model.addAttribute("dishesDeserts" , dishesDeserts);
         return "meals/form";
     }
 

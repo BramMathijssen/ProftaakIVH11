@@ -17,29 +17,28 @@
         </div>
         <input type="hidden" th:field="*{id}" th:class="${'form-control' + (#fields.hasErrors('id') ? ' is-invalid' : '')}"/>
         <div class="form-group">
-            <label for="mealName" th:text="#{meals.form.mealName}">Meal Name</label>
-            <input type="text" th:field="*{mealName}" th:class="${'form-control' + (#fields.hasErrors('mealName') ? ' is-invalid' : '')}">
-        </div>
-        <div class="form-group">
-            <label for="mealDishes" th:text="#{meals.form.mealDish}">Meal Cook</label>
+            <label for="mealDishes" th:text="#{meals.form.mealDish.Starters}">Meal Cook</label>
             <select th:field="*{dishesList}" th:class="${'form-control' + (#fields.hasErrors('dishesList') ? ' is-invalid' : '')}">
-                <option th:each="dish : ${dishes}"
+                <option th:each="dish : ${dishesStarters}"
                         th:value="${dish.id}"
                         th:text="${dish.dishName}">Name</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="mealType" th:text="#{meals.form.mealType}">Meal Type</label>
-            <select id="mealType" th:field="*{mealType}" th:class="${'form-control' + (#fields.hasErrors('mealType') ? ' is-invalid' : '')}">
-                <option value="Ontbijt" selected="selected">Ontbijt</option>
-                <option value="Lunch" selected="selected">Lunch</option>
-                <option value="Avondeten" selected="selected">Avondeten</option>
+            <label for="mealDishes" th:text="#{meals.form.mealDish.Maincourses}">Meal Cook</label>
+            <select th:field="*{dishesList}" th:class="${'form-control' + (#fields.hasErrors('dishesList') ? ' is-invalid' : '')}">
+                <option th:each="dish : ${dishesMaincourses}"
+                        th:value="${dish.id}"
+                        th:text="${dish.dishName}">Name</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="mealPrice" th:text="#{meals.form.mealPrice}">Meal Price</label>
-            <!--/* <input type="text" th:field="*{mealPrice}" th:class="${'form-control' + (#fields.hasErrors('mealPrice') ? ' is-invalid' : '')}"> */-->
-            <input type="text" th:field="*{mealPrice}" th:class="${'form-control' + (#fields.hasErrors('mealPrice') ? ' is-invalid' : '')}">
+            <label for="mealDishes" th:text="#{meals.form.mealDish.Deserts}">Meal Cook</label>
+            <select th:field="*{dishesList}" th:class="${'form-control' + (#fields.hasErrors('dishesList') ? ' is-invalid' : '')}">
+                <option th:each="dish : ${dishesDeserts}"
+                        th:value="${dish.id}"
+                        th:text="${dish.dishName}">Name</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="mealCook" th:text="#{meals.form.mealCook}">Meal Cook</label>

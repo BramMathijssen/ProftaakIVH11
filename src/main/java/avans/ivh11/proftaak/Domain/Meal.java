@@ -23,30 +23,38 @@ public class Meal {
     @GeneratedValue
     private Long id;
 
-    @NotEmpty(message = "Meal Name is required")
-    private String mealName;
-
-    @NotNull(message = "Price is required.")
-    private int mealPrice;
-
-    @NotEmpty(message = "Meal Type is required")
-    private String mealType;
-
-    @NotEmpty(message = "Summary is required")
-    private String mealSummary;
-
     private Calendar created = Calendar.getInstance();
-
-
-    @ManyToMany
-    private Set<Dish> dishesList = new HashSet<>();
-    //private List<Dish> mealDishes = new ArrayList<>();
-
-
 
     @JoinColumn(name = "student_id")
     @ManyToOne(cascade = CascadeType.ALL)
     private Student mealCook;
+
+    @ManyToMany
+    private Set<Dish> dishesList = new HashSet<>();
+
+    @NotEmpty(message = "Summary is required")
+    private String mealSummary;
+
+
+    public String getDishNameByType(String dishType) {
+        String starter = "Voorgerecht";
+        String maincourse = "Hoofdgerecht";
+        String desert = "Desert";
+
+        for (Dish dish : dishesList) {
+            if (dishType == dish.getDishType()) {
+                return dish.getDishName();
+            }
+        }
+        return null;
+
+    }
+}
+
+
+
+
+
 
 
 //    private Student studentCook;
@@ -113,4 +121,4 @@ public class Meal {
 //
 //        return mealCook;
 //    }
-}
+

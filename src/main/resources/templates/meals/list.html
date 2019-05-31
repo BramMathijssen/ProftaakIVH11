@@ -15,10 +15,9 @@
         <tr>
             <th th:text="#{meals.list.table.id}">ID</th>
             <th th:text="#{meals.list.table.created}">Created</th>
-            <th th:text="#{meals.list.table.mealName}">Meal Name</th>
             <th th:text="#{meals.list.table.dishName}">Meal Name</th>
-            <th th:text="#{meals.list.table.mealType}">Meal Type</th>
-            <th th:text="#{meals.list.table.mealPrice}">Meal Price</th>
+            <th th:text="#{meals.list.table.dishName}">Meal Name</th>
+            <th th:text="#{meals.list.table.dishName}">Meal Name</th>
             <th th:text="#{meals.list.table.mealCook}">Meal Cook</th>
             <th th:text="#{meals.list.table.mealSummary}">Summary</th>
         </tr>
@@ -28,22 +27,15 @@
             <td colspan="7" th:text="#{meals.list.table.empty}">No meals found</td>
         </tr>
         <tr th:each="meal : ${mealPage}">
-
             <td th:text="${meal.id}">1</td>
             <td th:text="${#calendars.format(meal.created)}">July 11,
                 2012 2:17:16 PM CDT</td>
-            <td th:text="${meal.mealName}">Friet</td>
             <td th:each="dish : ${meal.dishesList}"
             th:text="${dish.dishName}"></td>
-            <!-- <td th:text="${meal.mealPrice}">12</td> -->
-            <td th:text="${meal.mealType}">Avondmaal</td>
-            <td th:text="${meal.mealPrice}">3</td>
             <td th:text="${meal.mealCook.getStudentName()}">Henk</td>
             <td><a href="view.html" th:href="@{'/m/' + ${meal.id}}"
                    th:text="${meal.mealSummary}"> The summary </a></td>
         </tr>
-
-
         </tbody>
     </table>
     <div th:if="${mealPage.totalPages > 0}" class="pagination"
