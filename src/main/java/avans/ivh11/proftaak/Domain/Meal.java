@@ -26,7 +26,7 @@ public class Meal {
     private Calendar created = Calendar.getInstance();
 
     @JoinColumn(name = "student_id")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Student mealCook;
 
     @ManyToMany
@@ -35,11 +35,8 @@ public class Meal {
     @NotEmpty(message = "Summary is required")
     private String mealSummary;
 
-    //werkt niet omdat de dishtypes worden opgehaald als een int en niet als een string
+
     public String getDishNameByType(String dishType) {
-        String starter = "Voorgerecht";
-        String maincourse = "Hoofdgerecht";
-        String desert = "Desert";
 
         for (Dish dish : dishesList) {
             if ((dishType.equals(dish.getDishType()))) {

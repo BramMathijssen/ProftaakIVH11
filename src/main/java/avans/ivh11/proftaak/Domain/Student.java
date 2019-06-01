@@ -31,7 +31,7 @@ public class Student {
     //@JoinColumn(name = "meal_id")
     @OneToMany(
             mappedBy = "mealCook",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.REMOVE,
             orphanRemoval = true
     )
     private Set<Meal> meals = new HashSet<>();
