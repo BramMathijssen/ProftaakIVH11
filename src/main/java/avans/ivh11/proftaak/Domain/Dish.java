@@ -42,13 +42,6 @@ public class Dish {
         return dishName;
     }
 
-    private String getDishNameByType(String dishType){
-        String voorgerecht = "Voorgerecht";
-        if(dishType == voorgerecht){
-            return dishName;
-        }
-        return dishName;
-    }
 
 //    could multiple dishPrice times amount of guests and store it as mealPrice total
 //    @NotNull(message = "Price is required.")

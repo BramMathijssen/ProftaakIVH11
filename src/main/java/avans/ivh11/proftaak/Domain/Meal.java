@@ -35,14 +35,14 @@ public class Meal {
     @NotEmpty(message = "Summary is required")
     private String mealSummary;
 
-
+    //werkt niet omdat de dishtypes worden opgehaald als een int en niet als een string
     public String getDishNameByType(String dishType) {
         String starter = "Voorgerecht";
         String maincourse = "Hoofdgerecht";
         String desert = "Desert";
 
         for (Dish dish : dishesList) {
-            if (dishType == dish.getDishType()) {
+            if ((dishType.equals(dish.getDishType()))) {
                 return dish.getDishName();
             }
         }

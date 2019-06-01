@@ -15,9 +15,9 @@
         <tr>
             <th th:text="#{meals.list.table.id}">ID</th>
             <th th:text="#{meals.list.table.created}">Created</th>
-            <th th:text="#{meals.list.table.dishName}">Meal Name</th>
-            <th th:text="#{meals.list.table.dishName}">Meal Name</th>
-            <th th:text="#{meals.list.table.dishName}">Meal Name</th>
+            <th th:text="#{meals.list.table.dishName.starter}">Meal Name</th>
+            <th th:text="#{meals.list.table.dishName.mainCourse}">Meal Name</th>
+            <th th:text="#{meals.list.table.dishName.desert}">Meal Name</th>
             <th th:text="#{meals.list.table.mealCook}">Meal Cook</th>
             <th th:text="#{meals.list.table.mealSummary}">Summary</th>
         </tr>
@@ -30,8 +30,9 @@
             <td th:text="${meal.id}">1</td>
             <td th:text="${#calendars.format(meal.created)}">July 11,
                 2012 2:17:16 PM CDT</td>
-            <td th:each="dish : ${meal.dishesList}"
-            th:text="${dish.dishName}"></td>
+            <td th:text="${meal.getDishNameByType('Voorgerecht')}">1</td>
+            <td th:text="${meal.getDishNameByType('Hoofdgerecht')}">1</td>
+            <td th:text="${meal.getDishNameByType('Nagerecht')}">1</td>
             <td th:text="${meal.mealCook.getStudentName()}">Henk</td>
             <td><a href="view.html" th:href="@{'/m/' + ${meal.id}}"
                    th:text="${meal.mealSummary}"> The summary </a></td>
