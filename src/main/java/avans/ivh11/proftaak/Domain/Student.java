@@ -35,57 +35,10 @@ public class Student {
             orphanRemoval = true
     )
     private Set<Meal> meals = new HashSet<>();
-    //@OneToOne(cascade = javax.persistence.CascadeType.ALL ,mappedBy = "mealCook", orphanRemoval = true)
-
-
+    
     //private boolean isMealCook;
 
     //private boolean isMealGuest;
 
-    //Getters & Setters
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public String getStudentName() {
-//        return studentName;
-//    }
-//
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public void setStudentName(String studentName) {
-//        this.studentName = studentName;
-//    }
-//
-//    public Calendar getCreated() {
-//        return created;
-//    }
-//
-//    public void setCreated(Calendar created) {
-//
-//        this.created = created;
-//    }
-//
-//    public void setMeal(Meal meal) {
-//        this.meal = meal;
-//    }
-//
-//    public Meal getMeal() {
-//
-//        return meal;
-//    }
-
-
-
-    //    public boolean isMealCook() {
-//        return isMealCook;
-//    }
-
-//    public boolean isMealGuest() {
-//        return isMealGuest;
-//    }
 }
