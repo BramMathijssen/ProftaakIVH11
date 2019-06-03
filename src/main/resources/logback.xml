@@ -2,6 +2,8 @@
 <configuration>
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="avans.ivh11" level="TRACE" />
 
     <!-- logger name="org.springframework" level="DEBUG"/-->
 

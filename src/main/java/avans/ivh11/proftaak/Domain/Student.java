@@ -35,7 +35,7 @@ public class Student {
             orphanRemoval = true
     )
     private Set<Meal> meals = new HashSet<>();
-    
+
     //private boolean isMealCook;
 
     //private boolean isMealGuest;

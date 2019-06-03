@@ -1,5 +1,6 @@
 package avans.ivh11.proftaak.Controller;
 
+import avans.ivh11.proftaak.AOP.ExecutionTime;
 import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Domain.Meal;
 import avans.ivh11.proftaak.Domain.Student;
@@ -7,6 +8,8 @@ import avans.ivh11.proftaak.Repository.DishRepository;
 import avans.ivh11.proftaak.Repository.MealRepository;
 import avans.ivh11.proftaak.Repository.StudentRepository;
 import avans.ivh11.proftaak.Service.MealService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +30,8 @@ import java.util.stream.IntStream;
 @RequestMapping("/m")
 public class MealController {
 
+    private final Logger logger = LoggerFactory.getLogger(MealController.class);
+
     @Autowired
     private MealService mealService;
 
@@ -41,7 +46,11 @@ public class MealController {
     }
 
     @GetMapping
+    @ExecutionTime
     public ModelAndView list(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
+
+        logger.debug("Meals list called" );
+
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(5);
 
@@ -62,6 +71,9 @@ public class MealController {
 
     @GetMapping("{id}")
     public ModelAndView view(@PathVariable("id") Meal meal) {
+
+        logger.debug("View of meal called. - id:  " + meal.getId());
+
         return new ModelAndView("meals/view", "meal", meal);
     }
 
@@ -84,9 +96,12 @@ public class MealController {
     public ModelAndView create(@Valid Meal meal,  BindingResult result,
                                RedirectAttributes redirect) {
         if (result.hasErrors()) {
+            logger.debug("Form not created, result has errors." );
             return new ModelAndView("meals/form", "formErrors", result.getAllErrors());
         }
         meal = this.mealRepository.save(meal);
+
+        logger.debug("Meal Created and saved. - id:  " + meal.getId());
 
         redirect.addFlashAttribute("globalMessage", "meals.view.success");
         return new ModelAndView("redirect:/m/{meal.id}", "meal.id", meal.getId());
