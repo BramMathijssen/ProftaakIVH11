@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,8 +46,10 @@ public class MealController {
         this.dishRepository = dishRepository;
     }
 
+
     @GetMapping
     @ExecutionTime
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView list(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
 
         logger.debug("Meals list called" );
@@ -70,6 +73,7 @@ public class MealController {
     }
 
     @GetMapping("{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView view(@PathVariable("id") Meal meal) {
 
         logger.debug("View of meal called. - id:  " + meal.getId());
@@ -93,6 +97,7 @@ public class MealController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView create(@Valid Meal meal,  BindingResult result,
                                RedirectAttributes redirect) {
         if (result.hasErrors()) {

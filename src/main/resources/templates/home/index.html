@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/head :: head(title=~{::title/text()})">
     <title th:text="#{index.title}">Home Page</title>
 </head>
@@ -9,7 +9,26 @@
             <h4 class="float-left mt-2" th:text="#{index.welcome}">Welkom bij de studentenhuis applicatie</h4>
             <div class="clearfix"></div>
             <p class="float-left mt-2" th:text="#{index.subtitle}">Klik hieronder om het overzicht van geregistreerde maaltijden of studenten te zien.</p>
-            <p class="float-left mt-2 schijt"> Ik mot flink schijt'n</p>
+
+            <span sec:authentication="name">Bob</span>
+
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out"/>
+            </form>
+
+
+            <div sec:authorize="hasRole('ROLE_USER')">
+                <p>Hoi je bent ingelogd als een user</p>
+            </div>
+
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <p>Hoi je bent ingelogd als een ADMIN</p>
+            </div>
+
+            <div sec:authorize="isAuthenticated()">
+                <p>log uit</p>
+            </div>
+
             <div class="clearfix"></div>
             <div class="float-left mt-2">
                 <a class="btn btn-primary btn-sm" th:text="#{index.meals}" href="list.html" th:href="@{/m}">Meals</a>

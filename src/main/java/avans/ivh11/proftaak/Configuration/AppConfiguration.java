@@ -1,4 +1,4 @@
-package avans.ivh11.proftaak;
+package avans.ivh11.proftaak.Configuration;
 
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
 import org.springframework.context.annotation.Bean;

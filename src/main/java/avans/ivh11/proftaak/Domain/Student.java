@@ -18,6 +18,11 @@ public class Student {
     @GeneratedValue
     private Long id;
 
+//    @Column(nullable = false, unique = true)
+//    private String userName;
+//
+//    private String password;
+
     @NotEmpty(message = "Student Name is required.")
     private String studentName;
 
