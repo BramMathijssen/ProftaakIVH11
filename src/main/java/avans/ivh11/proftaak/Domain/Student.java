@@ -45,5 +45,16 @@ public class Student {
 
     //private boolean isMealGuest;
 
+    public int getAmountOfMeals() {
+        int count = 0;
+        for (Meal meal : meals) {
+            count++;
+        }
+        return count;
+    }
+
 
 }
+
+
+
