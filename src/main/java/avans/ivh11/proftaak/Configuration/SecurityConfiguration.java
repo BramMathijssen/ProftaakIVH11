@@ -24,21 +24,27 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private AuthenticationEntryPoint authEntryPoint;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers( "/home" ).permitAll()
+                .antMatchers( "/home"  ).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
+                .formLogin() //default login page
+                //.loginPage("/login") custom page
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/403");
+                .exceptionHandling().accessDeniedPage("/403")
+                .and().httpBasic()
+                .authenticationEntryPoint(authEntryPoint);
                 //.exceptionHandling().accessDeniedHandler(accessDeniedHandler());
 
     }

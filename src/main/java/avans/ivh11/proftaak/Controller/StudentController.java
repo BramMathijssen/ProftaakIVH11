@@ -3,6 +3,7 @@ package avans.ivh11.proftaak.Controller;
 
 import avans.ivh11.proftaak.Domain.Student;
 import avans.ivh11.proftaak.Repository.StudentRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 
-@Controller
+@RestController
 @RequestMapping("/s")
 public class StudentController {
 
@@ -39,6 +40,7 @@ public class StudentController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ModelAndView create(@Valid Student student, BindingResult result,
                                RedirectAttributes redirect) {
         if (result.hasErrors()) {
@@ -55,6 +57,7 @@ public class StudentController {
     }
 
     @GetMapping("delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ModelAndView delete(@PathVariable("id") Long id) {
         this.studentRepository.deleteById(id);
         Iterable<Student> students = this.studentRepository.findAll();
@@ -62,6 +65,7 @@ public class StudentController {
     }
 
     @GetMapping("modify/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ModelAndView modifyForm(@PathVariable("id") Student student) {
         return new ModelAndView("students/form", "student", student);
     }

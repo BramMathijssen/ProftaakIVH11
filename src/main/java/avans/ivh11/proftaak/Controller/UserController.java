@@ -2,7 +2,6 @@ package avans.ivh11.proftaak.Controller;
 
 import avans.ivh11.proftaak.Domain.User;
 
-import avans.ivh11.proftaak.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
