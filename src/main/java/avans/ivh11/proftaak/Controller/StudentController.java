@@ -3,7 +3,9 @@ package avans.ivh11.proftaak.Controller;
 
 import avans.ivh11.proftaak.Domain.Student;
 import avans.ivh11.proftaak.Repository.StudentRepository;
+import avans.ivh11.proftaak.Service.impl.StudentServiceImpl;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 
-@RestController
+@Controller
 @RequestMapping("/s")
 public class StudentController {
 
@@ -35,12 +37,13 @@ public class StudentController {
     }
 
     @GetMapping(params = "form")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String createForm(@ModelAttribute Student student) {
         return "students/form";
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView create(@Valid Student student, BindingResult result,
                                RedirectAttributes redirect) {
         if (result.hasErrors()) {
@@ -57,15 +60,16 @@ public class StudentController {
     }
 
     @GetMapping("delete/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView delete(@PathVariable("id") Long id) {
         this.studentRepository.deleteById(id);
+
         Iterable<Student> students = this.studentRepository.findAll();
         return new ModelAndView("students/list", "students", students);
     }
 
     @GetMapping("modify/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView modifyForm(@PathVariable("id") Student student) {
         return new ModelAndView("students/form", "student", student);
     }

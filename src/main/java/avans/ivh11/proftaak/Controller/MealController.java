@@ -49,7 +49,6 @@ public class MealController {
 
     @GetMapping
     @ExecutionTime
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView list(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
 
         logger.debug("Meals list called" );
@@ -73,7 +72,6 @@ public class MealController {
     }
 
     @GetMapping("{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView view(@PathVariable("id") Meal meal) {
 
         logger.debug("View of meal called. - id:  " + meal.getId());
@@ -118,6 +116,7 @@ public class MealController {
     }
 
     @GetMapping("delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView delete(@PathVariable("id") Long id) {
         this.mealRepository.deleteById(id);
         Iterable<Meal> meals = this.mealRepository.findAll();
@@ -125,6 +124,7 @@ public class MealController {
     }
 
     @GetMapping("modify/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView modifyForm(@PathVariable("id") Meal meal) {
         return new ModelAndView("meals/form", "meal", meal);
     }

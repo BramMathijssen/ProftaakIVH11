@@ -1,6 +1,8 @@
 package avans.ivh11.proftaak.Domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,6 +29,7 @@ public class Meal {
 
     @JoinColumn(name = "student_id")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Student mealCook;
 
     @ManyToMany

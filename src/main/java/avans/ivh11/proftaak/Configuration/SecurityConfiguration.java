@@ -5,6 +5,7 @@ import avans.ivh11.proftaak.Service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -32,7 +33,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers( "/home"  ).permitAll()
+                .antMatchers( "/home" , "/api/v1/students/**" , "/s/delete/**" ).permitAll()
+                .antMatchers(HttpMethod.DELETE, "/api/v1/students/**").hasRole("ADMIN") // didnt solve the bug
+                .and()
+                .csrf().disable().authorizeRequests() //adding this line solved the authentication failed for http delete with admin role
                 .anyRequest().authenticated()
                 .and()
                 .formLogin() //default login page

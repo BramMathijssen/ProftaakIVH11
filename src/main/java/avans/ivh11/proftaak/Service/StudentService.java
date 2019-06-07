@@ -1,15 +1,25 @@
 package avans.ivh11.proftaak.Service;
 
+import avans.ivh11.proftaak.Domain.Student;
 import avans.ivh11.proftaak.Repository.StudentRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
-@Service
-public class StudentService {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
-    private final StudentRepository studentRepository;
+public interface StudentService {
 
-    public StudentService(StudentRepository studentRepository){
-        this.studentRepository = studentRepository;
+    List<Student> findAll();
 
-    }
+    Student save(Student student);
+
+    Optional<Student> findById(Long id);
+
+    void deleteById(Long id);
+
+
 }

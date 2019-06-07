@@ -1,6 +1,7 @@
 package avans.ivh11.proftaak.Domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Student {
 
     @Id
@@ -39,6 +41,7 @@ public class Student {
             cascade = CascadeType.REMOVE,
             orphanRemoval = true
     )
+    @JsonBackReference
     private Set<Meal> meals = new HashSet<>();
 
     //private boolean isMealCook;
