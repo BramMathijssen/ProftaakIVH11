@@ -1,6 +1,7 @@
 package avans.ivh11.proftaak.Domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
@@ -29,7 +30,7 @@ public class Meal {
 
     @JoinColumn(name = "student_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonManagedReference
+    //@JsonManagedReference Commenting this out resolved the content-type-application-jsoncharset-utf-8-not-supported error while doing a HTTP Post
     private Student mealCook;
 
     @ManyToMany

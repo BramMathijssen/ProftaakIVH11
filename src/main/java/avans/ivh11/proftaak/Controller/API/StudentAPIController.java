@@ -1,5 +1,6 @@
-package avans.ivh11.proftaak.Controller;
+package avans.ivh11.proftaak.Controller.API;
 
+import avans.ivh11.proftaak.Controller.MealController;
 import avans.ivh11.proftaak.Domain.Student;
 import avans.ivh11.proftaak.Repository.StudentRepository;
 import avans.ivh11.proftaak.Service.StudentService;

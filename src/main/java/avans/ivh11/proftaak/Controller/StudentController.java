@@ -1,12 +1,17 @@
 package avans.ivh11.proftaak.Controller;
 
 
+import avans.ivh11.proftaak.Domain.BaseStudent;
 import avans.ivh11.proftaak.Domain.Student;
+import avans.ivh11.proftaak.Domain.StudentSpecialties;
+import avans.ivh11.proftaak.Repository.BaseStudentRepository;
+
+
 import avans.ivh11.proftaak.Repository.StudentRepository;
-import avans.ivh11.proftaak.Service.impl.StudentServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,7 +43,11 @@ public class StudentController {
 
     @GetMapping(params = "form")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String createForm(@ModelAttribute Student student) {
+    public String createForm(@ModelAttribute Student student, Model model) {
+        BaseStudent student2 = new Student();
+        model.addAttribute("student2" , student2);
+        StudentSpecialties studspec = new StudentSpecialties();
+        model.addAttribute("studspec" , studspec);
         return "students/form";
     }
 

@@ -2,6 +2,7 @@ package avans.ivh11.proftaak.Domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,14 +15,19 @@ import java.util.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Student {
+public class Student extends BaseStudent {
 
     @Id
     @GeneratedValue
     private Long id;
 
+
 //    @Column(nullable = false, unique = true)
+
+
 //    private String userName;
+
+
 //
 //    private String password;
 
@@ -55,7 +61,6 @@ public class Student {
         }
         return count;
     }
-
 
 }
 

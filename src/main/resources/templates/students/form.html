@@ -20,6 +20,7 @@
             <label for="studentName" th:text="#{students.form.studentName}">Student Name</label>
             <input type="text" th:field="*{studentName}" th:class="${'form-control' + (#fields.hasErrors('studentName') ? ' is-invalid' : '')}">
         </div>
+
         <button type="submit" class="btn btn-primary" th:text="#{students.form.submit}">Submit</button>
     </form>
 </div>

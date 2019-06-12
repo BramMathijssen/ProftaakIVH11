@@ -37,22 +37,10 @@ public class StudentServiceImpl implements StudentService {
     public void deleteById(Long id) {
         studentRepository.deleteById(id);
     }
-//
-//    //Cannot infer arguments (unable to resolve constructor)
-//    public Set<Student> getStudents()
-//    {
-//        Set<Student> students = new HashSet<>(studentRepository.findAll());
-//        return students;
-//    }
-//
-//    public ArrayList<Student> getStudentsList(){
-//        return (ArrayList<Student>) this.studentRepository.findAll();
-//    }
+
 }
 
 
-//    public List<Student> findAll(){
-//        return Lists.newArrayList(studentRepository.findAll());
-//    }
+
 
 

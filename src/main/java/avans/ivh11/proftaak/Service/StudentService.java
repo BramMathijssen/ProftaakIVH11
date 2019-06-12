@@ -1,7 +1,6 @@
 package avans.ivh11.proftaak.Service;
 
 import avans.ivh11.proftaak.Domain.Student;
-import avans.ivh11.proftaak.Repository.StudentRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
