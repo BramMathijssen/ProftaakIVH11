@@ -1,5 +1,7 @@
 package avans.ivh11.proftaak.Controller;
 
+import avans.ivh11.proftaak.Domain.IngredientsSupply;
+import avans.ivh11.proftaak.Repository.IngredientsSupplyRepository;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +14,38 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequestMapping(value = "/", method = RequestMethod.GET)
 public class HomeController {
 
+    private IngredientsSupplyRepository supplyRepository;
+
+    public HomeController(IngredientsSupplyRepository supplyRepository){
+        this.supplyRepository = supplyRepository;
+    }
+
     @GetMapping
     public ModelAndView index(){
+        createSupplies();
+
+
         return new ModelAndView("home/index");
+    }
+
+    public void createSupplies(){
+
+        IngredientsSupply supply = new IngredientsSupply.Builder()
+                .ingredientName("Olijfolie")
+                .amountMl(1000)
+                .build();
+
+        supplyRepository.save(supply);
+
+        IngredientsSupply supply2 = new IngredientsSupply.Builder()
+                .ingredientName("Knolraap")
+                .pieces(1)
+                .build();
+
+        supplyRepository.save(supply2);
+
+
+
     }
 
 }
