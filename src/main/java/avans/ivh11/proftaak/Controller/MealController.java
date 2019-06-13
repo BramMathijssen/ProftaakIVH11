@@ -1,6 +1,7 @@
 package avans.ivh11.proftaak.Controller;
 
 import avans.ivh11.proftaak.AOP.ExecutionTime;
+import avans.ivh11.proftaak.AOP.LoggerSingleton;
 import avans.ivh11.proftaak.Domain.BaseStudent;
 import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Domain.Meal;
@@ -53,7 +54,9 @@ public class MealController {
     @ExecutionTime
     public ModelAndView list(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
 
-        logger.debug("Meals list called" );
+
+
+        //logger.debug("Meals list called" );
 
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(5);
