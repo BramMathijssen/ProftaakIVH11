@@ -85,6 +85,7 @@ public class MealController {
     }
 
     @GetMapping(params = "form")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String createForm(@ModelAttribute Meal meal , Model model) {
         Iterable<Student> students = this.studentRepository.findAll();
         Iterable<Dish> dishes = this.dishRepository.findAll();

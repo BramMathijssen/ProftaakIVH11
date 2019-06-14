@@ -5,7 +5,7 @@
 </head>
 <body>
 <div class="container">
-    <div th:replace="fragments :: navbar"></div>
+    <div th:replace="fragments/navbar :: navbar"></div>
     <div class="float-right mt-2">
         <a class="btn btn-primary btn-sm" href="form.html" th:href="@{d/(form)}" th:text="#{dishes.list.create}">Create Dish</a>
     </div>

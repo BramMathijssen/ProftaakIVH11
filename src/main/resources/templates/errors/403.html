@@ -5,7 +5,10 @@
 </head>
 <body>
 <div class="container">
-    <h2>Sorry you don't have permission to view this page.</h2>
+    <div class="float-left mt-2">
+        <h2>Sorry you don't have permission to view this page.</h2>
+        <a class="btn btn-primary btn-sm" th:text="#{index.home}" href="index.html" th:href="@{/}">Home</a>
+    </div>
 </div>
 </body>
 </html>

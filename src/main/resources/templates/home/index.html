@@ -4,41 +4,39 @@
     <title th:text="#{index.title}">Home Page</title>
 </head>
 <body>
-    <div th:replace="fragments/navbar :: navbar"></div>
-        <div class="container">
-            <h4 class="float-left mt-2" th:text="#{index.welcome}">Welkom bij de studentenhuis applicatie</h4>
-            <div class="clearfix"></div>
-            <p class="float-left mt-2" th:text="#{index.subtitle}">Klik hieronder om het overzicht van geregistreerde maaltijden of studenten te zien.</p>
-
-            <span sec:authentication="name">Bob</span>
-
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out"/>
-            </form>
-
-
-            <div sec:authorize="hasRole('ROLE_USER')">
-                <p>Hoi je bent ingelogd als een user</p>
-            </div>
-
-            <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <p>Hoi je bent ingelogd als een ADMIN</p>
-            </div>
-
-            <div sec:authorize="isAuthenticated()">
-                <p>log uit</p>
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="float-left mt-2">
-                <a class="btn btn-primary btn-sm" th:text="#{index.meals}" href="list.html" th:href="@{/m}">Meals</a>
-                <a class="btn btn-primary btn-sm" th:text="#{index.dishes}" href="list.html" th:href="@{/d}">Gerechten</a>
-                <a class="btn btn-primary btn-sm" th:text="#{index.students}" href="list.html" th:href="@{/s}">Students</a>
-
-            </div>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container">
+    <div class="float-left mt-2">
+        <h4 class="float-left mt-2" th:text="#{index.welcome}">Welkom bij de studentenhuis applicatie</h4>
+        <div class="clearfix"></div>
+        <div>
+            <p>Ingelogd als: <span sec:authentication="name"></span></p>
         </div>
-    <footer class="footer">
-        <div th:replace="fragments/footer :: footer"></div>
-    </footer>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <p>Als een admin heb je de rechten om nieuwe objecten aan te maken, wijzigen of verwijderen.</p>
+        </div>
+        <div sec:authorize="hasRole('ROLE_USER')">
+            <p>Als een user kan je alle objecten bekijken, je kan echter geen nieuwe aanmaken, wijzigen of
+                verwijderen</p>
+        </div>
+
+        <p class="float-left mt-2">Gebruik het navigatie menu om nieuwe studenten, maaltijden of gerechten toe te voegen.
+            Voeg eerst nieuwe gerechten toe en eventueel het bijbehorende recept. Deze kun je vervolgens toevoegen aan een maaltijd en deze vervolgens inplannen.</p>
+
+
+
+        <div class="clearfix"></div>
+
+        <!--<div class="float-left mt-2">-->
+        <!--<a class="btn btn-primary btn-sm" th:text="#{index.meals}" href="list.html" th:href="@{/m}">Meals</a>-->
+        <!--<a class="btn btn-primary btn-sm" th:text="#{index.dishes}" href="list.html" th:href="@{/d}">Gerechten</a>-->
+        <!--<a class="btn btn-primary btn-sm" th:text="#{index.students}" href="list.html" th:href="@{/s}">Students</a>-->
+
+        <!--</div>-->
+    </div>
+</div>
+<footer class="footer">
+    <div th:replace="fragments/footer :: footer"></div>
+</footer>
 </body>
 </html>
