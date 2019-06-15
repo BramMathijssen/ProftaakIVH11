@@ -1,52 +1,30 @@
 package avans.ivh11.proftaak.Service;
 
 import avans.ivh11.proftaak.Domain.Meal;
-import avans.ivh11.proftaak.Repository.MealRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class MealService {
 
-    @Autowired
-     private final MealRepository mealRepository;
+public interface MealService {
 
-    public MealService(MealRepository mealRepository){
-        this.mealRepository = mealRepository;
+    List<Meal> findAll();
 
-    }
+    Meal save(Meal meal);
 
-    public ArrayList<Meal> getMealsList() {
-        return (ArrayList<Meal>) this.mealRepository.findAll();
-    }
+    Optional<Meal> findById(Long id);
 
-    public Page<Meal> findPaginated(Pageable pageable) {
-        int pageSize = pageable.getPageSize();
-        int currentPage = pageable.getPageNumber();
-        int startItem = currentPage * pageSize;
-        List<Meal> list;
+    void deleteById(Long id);
 
-        if (getMealsList().size() < startItem) {
-            list = Collections.emptyList();
-        } else {
-            int toIndex = Math.min(startItem + pageSize, getMealsList().size());
-            list = getMealsList().subList(startItem, toIndex);
-        }
+    ArrayList<Meal> getMealsList();
 
-        Page<Meal> mealPage
-                = new PageImpl<Meal>(list, PageRequest.of(currentPage, pageSize), getMealsList().size());
+    Page<Meal> findPaginated(Pageable pageable);
 
-        return mealPage;
-    }
+
 
 
 

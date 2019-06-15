@@ -1,12 +1,9 @@
 package avans.ivh11.proftaak.Controller;
 
 import avans.ivh11.proftaak.AOP.ExecutionTime;
-import avans.ivh11.proftaak.AOP.LoggerSingleton;
-import avans.ivh11.proftaak.Domain.BaseStudent;
 import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Domain.Meal;
 import avans.ivh11.proftaak.Domain.Student;
-import avans.ivh11.proftaak.Repository.BaseStudentRepository;
 import avans.ivh11.proftaak.Repository.DishRepository;
 import avans.ivh11.proftaak.Repository.MealRepository;
 import avans.ivh11.proftaak.Repository.StudentRepository;
