@@ -51,8 +51,6 @@ public class MealController {
     @ExecutionTime
     public ModelAndView list(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
 
-
-
         //logger.debug("Meals list called" );
 
         int currentPage = page.orElse(1);

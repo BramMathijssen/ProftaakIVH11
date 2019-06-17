@@ -1,5 +1,6 @@
 package avans.ivh11.proftaak.Domain;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
+@Data
 @NoArgsConstructor
 public class Dish {
 

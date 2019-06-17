@@ -39,11 +39,13 @@
         </tr>
         </tbody>
     </table>
-    <div th:if="${mealPage.totalPages > 0}" class="pagination"
+    <div>
+    <ul th:if="${mealPage.totalPages > 0}" class="pagination"
          th:each="pageNumber : ${pageNumbers}">
-        <a th:href="@{/m(size=${mealPage.size}, page=${pageNumber})}"
+        <li class="page-item"><a th:href="@{/m(size=${mealPage.size}, page=${pageNumber})}"
            th:text=${pageNumber}
-           th:class="${pageNumber==mealPage.number + 1} ? active"></a>
+           th:class="${pageNumber==mealPage.number + 1} ? active"></a></li>
+    </ul>
     </div>
 </div>
 </body>

@@ -41,7 +41,6 @@ li .nav-item lang{
     list-style: none;
 }
 
-
 .navbar-expand-sm .btn{
     margin-left: 15px;
     margin-right: 15px;
@@ -50,6 +49,10 @@ li .nav-item lang{
 .navbar-expand-sm .navbar-nav .nav-link{
     padding-right: 1em !important;
     padding-left: 1em !important;
+}
+
+.pagination{
+    display: inline-block !important;
 }
 
 

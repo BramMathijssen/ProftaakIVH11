@@ -16,12 +16,12 @@ public class IngredientsSupply {
     private int amountMl;
     private int grams;
 
+    //No args constructor set on private so new IngredientSupplies can only be made trough the build() method
     private IngredientsSupply(){
 
     }
 
     public static class Builder{
-
 
         private long id;
 

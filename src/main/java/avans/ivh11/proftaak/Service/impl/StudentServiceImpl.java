@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.google.common.collect.Lists;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Service
@@ -26,6 +27,11 @@ public class StudentServiceImpl implements StudentService {
         return Lists.newArrayList(studentRepository.findAll());
     }
 
+
+    public Iterable<Student> findAllIteratable(){
+        return this.studentRepository.findAll();
+    }
+
     public Student save(Student student) {
         return studentRepository.save(student);
     }
@@ -37,6 +43,7 @@ public class StudentServiceImpl implements StudentService {
     public void deleteById(Long id) {
         studentRepository.deleteById(id);
     }
+
 
 }
 
