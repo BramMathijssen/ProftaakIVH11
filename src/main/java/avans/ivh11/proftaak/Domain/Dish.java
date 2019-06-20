@@ -1,14 +1,8 @@
 package avans.ivh11.proftaak.Domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 import java.util.*;
@@ -16,9 +10,9 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
-@Data
+@ToString(callSuper = true, includeFieldNames = true, of = { "dishName", "dishType", "dishRecipe" })
 @NoArgsConstructor
-public class Dish {
+public class Dish extends DomainObject {
 
     @Id
     @GeneratedValue
@@ -41,6 +35,36 @@ public class Dish {
 
     public String getDishName() {
         return dishName;
+    }
+
+    @Override
+    public int hashCode() {
+        if (id != null) {
+            return id.hashCode();
+        } else {
+            return super.hashCode();
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        // null is not an instance of anything, so check whether null is not
+        // necessary
+        if (!(o instanceof DomainObject)) {
+            return false;
+        }
+
+        DomainObject other = (DomainObject) o;
+
+        // unsaved objects are never equal
+        if (id == null || other.getId() == null) {
+            return false;
+        }
+
+        return id.equals(other.getId());
     }
 
 

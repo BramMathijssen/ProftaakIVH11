@@ -13,6 +13,8 @@ public interface DishService {
 
     Optional<Dish> findById(Long id);
 
+    //Dish findById(Long id);
+
     void deleteById(Long id);
 
 }

@@ -24,7 +24,7 @@ public class Student extends BaseStudent {
     private Long id;
 
 
-    //@NotEmpty(message = "Student Name is required.")
+    @NotEmpty(message = "Student Name is required.")
     private String studentName;
 
     private Calendar created = Calendar.getInstance();
