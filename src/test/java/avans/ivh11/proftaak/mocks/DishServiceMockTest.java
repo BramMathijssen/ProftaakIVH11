@@ -2,6 +2,7 @@ package avans.ivh11.proftaak.mocks;
 
 import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Repository.DishRepository;
+import avans.ivh11.proftaak.Service.DishService;
 import avans.ivh11.proftaak.Service.impl.DishServiceImpl;
 import org.aspectj.lang.annotation.Before;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,26 +35,13 @@ public class DishServiceMockTest {
     private static final String DISH_TYPE2 = "Nagerecht";
     private static final Long DISH_ID2 = 24L;
 
-    //Mock the service which is to be tested (Can't be a interface)
-    @InjectMocks
-    DishServiceImpl dishService;
-
     //Mock the service dependencies(=DishServiceImpl is dependent on dishRepo)
     @Mock
     DishRepository dishRepository;
 
-    @Test
-    public void testSaveDish(){
-        Dish dish = new Dish();
-        dish.setDishName(DISH_NAME);
-        dish.setDishType(DISH_TYPE);
-
-        List<Dish> dish2 = dishService.findAll();
-
-        Mockito.when(dishRepository.save(dish)).thenReturn(dish);
-
-        assertThat(dish2).isEqualTo(dish);
-    }
+    //Mock the service which is to be tested (Can't be a interface)
+    @InjectMocks
+    DishServiceImpl dishService;
 
 
     //https://hellokoding.com/spring-boot-test-service-layer-example-with-mockitos-mock-and-injectmock/
@@ -77,10 +66,16 @@ public class DishServiceMockTest {
     @Test
     public void findById(){
         //Arange
+//        Dish dish = new Dish();
+//        dish.setId(1L);
+//        dish.setDishName("Kaas");
+//        dish.setDishType("Voorgerecht");
+
         Dish dish = createDish(DISH_ID, DISH_NAME, DISH_TYPE);
 
+
         Mockito.when(dishRepository.findById(DISH_ID)).thenReturn(Optional.of(dish));
-        assertThat(dishService.findById(DISH_ID)).isEqualTo(dish);
+        assertThat(dishService.findById(DISH_ID)).isEqualTo(Optional.of(dish));
 
         //Optional<Dish> dishes = dishService.findById(DISH_ID);
 
@@ -120,11 +115,11 @@ public class DishServiceMockTest {
         dish.setId(id);
         dish.setDishName(dishName);
         dish.setDishType(dishType);
-        Dish retval = dishService.save(dish);
+//        Dish retval = dishService.save(dish);
 //        assertNotNull(retval);
 //        assertNotNull(retval.getId());
 //        assertEquals("dishName", dishName, retval.getDishName());
 //        assertEquals("dishType", dishType, retval.getDishType());
-        return retval;
+        return dish;
     }
 }

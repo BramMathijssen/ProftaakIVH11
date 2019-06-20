@@ -10,7 +10,7 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
-@ToString(callSuper = true, includeFieldNames = true, of = { "dishName", "dishType", "dishRecipe" })
+//@ToString(callSuper = true, includeFieldNames = true, of = { "dishName", "dishType", "dishRecipe" })
 @NoArgsConstructor
 public class Dish extends DomainObject {
 
