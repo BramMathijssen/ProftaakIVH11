@@ -23,18 +23,12 @@ public class Student extends BaseStudent {
     @GeneratedValue
     private Long id;
 
-
     @NotEmpty(message = "Student Name is required.")
     private String studentName;
 
     private Calendar created = Calendar.getInstance();
 
-    //@ManyToOne
-    //private Meal meals;
-    //displays meal_id NULL in the database.
-    //can implement a list of meals with a @OneToMany relationship to couple multiple meals to 1 student to check in the view.
-    //@JsonBackReference
-    //@JoinColumn(name = "meal_id")
+
     @OneToMany(
             mappedBy = "mealCook",
             cascade = CascadeType.REMOVE,
@@ -42,10 +36,6 @@ public class Student extends BaseStudent {
     )
     @JsonBackReference
     private Set<Meal> meals = new HashSet<>();
-
-    //private boolean isMealCook;
-
-    //private boolean isMealGuest;
 
 
 

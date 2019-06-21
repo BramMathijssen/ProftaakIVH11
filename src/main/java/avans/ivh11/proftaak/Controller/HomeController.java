@@ -20,12 +20,13 @@ public class HomeController {
 
     @GetMapping
     public ModelAndView index(){
-        createSupplies();
+//        createSupplies();
 
 
         return new ModelAndView("home/index");
     }
 
+    //To create new supplies add this method to the index method().
     public void createSupplies(){
 
         IngredientsSupply supply = new IngredientsSupply.Builder()

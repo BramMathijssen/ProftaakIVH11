@@ -29,8 +29,6 @@ public class DishServiceImpl implements DishService {
         return dishRepository.save(dish);
     }
 
-    //public Dish findById(Long id) { return Dish(dishRepository.findById(id));
-
     public Optional<Dish> findById(Long id) {
         return dishRepository.findById(id);
     }

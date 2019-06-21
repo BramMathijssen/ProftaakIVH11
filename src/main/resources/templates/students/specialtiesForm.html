@@ -9,8 +9,10 @@
     <div class="float-right mt-2">
         <a class="btn btn-primary btn-sm" th:href="@{/s}" href="students.html"> Students </a>
     </div>
-    <h4 class="float-left mt-2" th:text="#{students.form.title}">Students : Create</h4>
-    <p th:text="${student.studentName}">1</p>
+    <div>
+        <h4 class="float-left mt-2">Adding Specialties to: </h4>
+        <h2 th:text="${student.studentName}">1</h2>
+    </div>
     <div class="clearfix"></div>
     <form id="specialtiesForm" th:action="@{/s/(specialtiesForm)}" th:object="${studSpec}"  action="#" method="post">
         <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">

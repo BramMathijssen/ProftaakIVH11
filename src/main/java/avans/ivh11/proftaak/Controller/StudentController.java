@@ -53,22 +53,14 @@ public class StudentController {
     @GetMapping(params = "form")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String createForm(@ModelAttribute Student student, Model model) {
-        BaseStudent student2 = new Student();
-        BaseStudent student3 = new StudentSpecialties();
-        model.addAttribute("student2" , student2);
-        model.addAttribute("student3" , student3);
-        StudentSpecialties studspec = new StudentSpecialties();
-        model.addAttribute("studspec" , studspec);
+//        BaseStudent student2 = new Student();
+//        BaseStudent student3 = new StudentSpecialties();
+//        model.addAttribute("student2" , student2);
+//        model.addAttribute("student3" , student3);
+//        StudentSpecialties studspec = new StudentSpecialties();
+//        model.addAttribute("studspec" , studspec);
         return "students/form";
     }
-
-//    @GetMapping(params = "specialtiesForm")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
-//    public String createSpecialtiesForm2(@ModelAttribute Student student, Model model) {
-//        StudentSpecialties studSpec = new StudentSpecialties();
-//        model.addAttribute("studSpec" , studSpec);
-//        return "students/list";
-//    }
 
     @GetMapping("specialties/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
