@@ -10,6 +10,7 @@ import avans.ivh11.proftaak.Repository.BaseStudentRepository;
 
 import avans.ivh11.proftaak.Repository.StudentRepository;
 import avans.ivh11.proftaak.Repository.StudentSpecialtiesRepository;
+import avans.ivh11.proftaak.Service.impl.StudentServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -21,23 +22,28 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sun.rmi.runtime.Log;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 
 @Controller
 @RequestMapping("/s")
 public class StudentController {
 
-    private final StudentRepository studentRepository;
+    private final BaseStudentRepository studentRepository;
     private final StudentSpecialtiesRepository studentSpecialtiesRepository;
+    private final StudentServiceImpl studentService;
 
-    public StudentController(StudentRepository studentRepository, StudentSpecialtiesRepository studentSpecialtiesRepository){
+    public StudentController(StudentServiceImpl studentService,BaseStudentRepository studentRepository, StudentSpecialtiesRepository studentSpecialtiesRepository){
+        this.studentService = studentService;
         this.studentRepository = studentRepository;
         this.studentSpecialtiesRepository = studentSpecialtiesRepository;
     }
 
     @GetMapping
-    public ModelAndView list(){
-        Iterable<Student> students = this.studentRepository.findAll();
+    public ModelAndView list(Student student){
+        createStudent();
+        decorateStudent();
+        Iterable<Student> students = studentService.findAll();
         return new ModelAndView("students/list" , "students", students);
     }
 
@@ -53,12 +59,6 @@ public class StudentController {
     @GetMapping(params = "form")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String createForm(@ModelAttribute Student student, Model model) {
-//        BaseStudent student2 = new Student();
-//        BaseStudent student3 = new StudentSpecialties();
-//        model.addAttribute("student2" , student2);
-//        model.addAttribute("student3" , student3);
-//        StudentSpecialties studspec = new StudentSpecialties();
-//        model.addAttribute("studspec" , studspec);
         return "students/form";
     }
 
@@ -93,7 +93,7 @@ public class StudentController {
     public ModelAndView delete(@PathVariable("id") Long id) {
         this.studentRepository.deleteById(id);
 
-        Iterable<Student> students = this.studentRepository.findAll();
+        Iterable<Student> students = this.studentService.findAll();
         return new ModelAndView("students/list", "students", students);
     }
 
@@ -101,6 +101,17 @@ public class StudentController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView modifyForm(@PathVariable("id") Student student) {
         return new ModelAndView("students/form", "student", student);
+    }
+
+    public void createStudent(){
+        Student student = new Student("Henk");
+        studentRepository.save(student);
+    }
+
+    private void decorateStudent(){
+        Optional<BaseStudent> concreteStudent = studentRepository.findById(1L);
+        BaseStudent baseStudent1 = new StudentSpecialties(true, "Zuivel", concreteStudent.get());
+        studentRepository.save(baseStudent1);
     }
 
 

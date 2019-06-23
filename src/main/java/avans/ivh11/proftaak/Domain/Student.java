@@ -11,10 +11,10 @@ import javax.validation.constraints.NotEmpty;
 import java.util.*;
 
 @Entity
+@NoArgsConstructor
 @Getter
 @Setter
 @Data
-@NoArgsConstructor
 public class Student extends BaseStudent {
 
     @Id
@@ -34,6 +34,11 @@ public class Student extends BaseStudent {
     )
     @JsonBackReference
     private Set<Meal> meals = new HashSet<>();
+
+
+    public Student(String studentName){
+        this.studentName = studentName;
+    }
 
 
     public int getAmountOfMeals() {
