@@ -14,8 +14,7 @@ import java.util.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Data
-public class Student extends BaseStudent {
+public class Student extends BaseStudent  {
 
     @Id
     @GeneratedValue
@@ -47,6 +46,36 @@ public class Student extends BaseStudent {
             count++;
         }
         return count;
+    }
+
+    @Override
+    public int hashCode() {
+        if (id != null) {
+            return id.hashCode();
+        } else {
+            return super.hashCode();
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        // null is not an instance of anything, so check whether null is not
+        // necessary
+        if (!(o instanceof DomainObject)) {
+            return false;
+        }
+
+        DomainObject other = (DomainObject) o;
+
+        // unsaved objects are never equal
+        if (id == null || other.getId() == null) {
+            return false;
+        }
+
+        return id.equals(other.getId());
     }
 
 }

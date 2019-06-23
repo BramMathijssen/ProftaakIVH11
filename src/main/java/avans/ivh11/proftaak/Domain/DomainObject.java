@@ -5,14 +5,17 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @MappedSuperclass
 @Getter
 @Setter
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
-public class DomainObject {
+@ToString(includeFieldNames = true, of = { "id", "version" })
+public abstract class DomainObject implements Serializable {
 
     @Id
     @GeneratedValue

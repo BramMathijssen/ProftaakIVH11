@@ -2,17 +2,13 @@ package avans.ivh11.proftaak.mocks;
 
 import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Repository.DishRepository;
-import avans.ivh11.proftaak.Service.DishService;
 import avans.ivh11.proftaak.Service.impl.DishServiceImpl;
-import org.aspectj.lang.annotation.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +18,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.when;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class DishServiceMockTest {
@@ -65,29 +61,20 @@ public class DishServiceMockTest {
 
     @Test
     public void findById(){
-        //Arange
-//        Dish dish = new Dish();
-//        dish.setId(1L);
-//        dish.setDishName("Kaas");
-//        dish.setDishType("Voorgerecht");
-
+        //Arrange
         Dish dish = createDish(DISH_ID, DISH_NAME, DISH_TYPE);
 
-
+        //Act
         Mockito.when(dishRepository.findById(DISH_ID)).thenReturn(Optional.of(dish));
+
+        //Assert
         assertThat(dishService.findById(DISH_ID)).isEqualTo(Optional.of(dish));
 
-        //Optional<Dish> dishes = dishService.findById(DISH_ID);
-
-        //Optional<Dish> dishes = dishService.findById(dishId);
-
-        //when(dishRepository.findById(dishId)).thenReturn(Optional.of(dish));
-
-        //assertThat(dish).isEqualTo(dishes);
     }
 
     @Test
     public void findAllDishes(){
+        //Arrange
         Dish dish1 = createDish(DISH_ID , DISH_NAME , DISH_TYPE);
         Dish dish2 = createDish(DISH_ID2, DISH_NAME2, DISH_TYPE2);
 
@@ -95,16 +82,23 @@ public class DishServiceMockTest {
         dishList.add(dish1);
         dishList.add(dish2);
 
+        //Act
         Mockito.when(dishRepository.findAll()).thenReturn(dishList);
+
+        //Assert
         assertThat(dishService.findAll()).isEqualTo(dishList);
     }
 
     @Test
     public void deleteDish(){
+        //Arrange
         Dish dish = createDish(DISH_ID, DISH_NAME, DISH_TYPE);
 
+        //Act
         Mockito.when(dishRepository.findById(DISH_ID)).thenReturn(Optional.of(dish));
         Mockito.when(dishRepository.existsById(dish.getId())).thenReturn(false);
+
+        //Assert
         assertFalse(dishRepository.existsById(dish.getId()));
 
     }

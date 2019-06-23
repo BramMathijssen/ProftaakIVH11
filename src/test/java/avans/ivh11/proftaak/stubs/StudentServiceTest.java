@@ -1,7 +1,9 @@
 package avans.ivh11.proftaak.stubs;
 
+import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Domain.Student;
 import avans.ivh11.proftaak.Repository.StudentRepository;
+import avans.ivh11.proftaak.Service.DishService;
 import avans.ivh11.proftaak.Service.StudentService;
 import avans.ivh11.proftaak.Service.impl.StudentServiceImpl;
 import org.junit.AfterClass;
@@ -31,114 +33,110 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 @SpringBootTest
 public class StudentServiceTest {
 
-    private static final String STUDENT_NAME = "Henkie";
+    private static final String STUDENT_NAME = "Henk";
+
+    private static final String STUDENT_NAME2 = "Karel";
 
     @Autowired
-    private StudentServiceImpl studentService;
-
-    @Autowired
-    private StudentRepository studentRepository;
-
-    @BeforeClass
-    public static void initializeDatabase() {
-    }
-
-    @AfterClass
-    public static void cleanUpDatabase() {
-    }
-
-//    @Test
-//    public void create2(){
-//
-//        Student student = createStudent(STUDENT_NAME);
-//
-//        List<Student> expectedProducts = Arrays.asList(student);
-//
-//        doReturn(expectedProducts).when(studentService).findAll();
-//
-//        // when
-//        List<Product> actualProducts = productService.findAll();
-//
-//        // then
-//        assertThat(actualProducts).isEqualTo(expectedProducts);
-//    }
+    private StudentService studentService;
 
     @Test
-    public void createStudent(){
+    public void create(){
         //execute
-        Student student = new Student();
-        student.setStudentName(STUDENT_NAME);
-        studentService.save(student);
+        Student student = createStudent2(STUDENT_NAME);
 
+        //verify
         List<Student> students = studentService.findAll();
         assertNotNull(students);
         assertTrue("created a student" ,students.contains(student));
     }
 
+
     @Test
     public void findById(){
-        Student student = new Student();
-        student.setStudentName(STUDENT_NAME);
-
-        studentService.save(student);
+        //execute
+        Student student = createStudent2(STUDENT_NAME);
 
         Long studentId = student.getId();
 
+        Optional<Student> student2 = studentService.findById(studentId);
+        //verify
+        assertNotNull(student2); //Not necessary because a Optional is not Null
+        //assertEquals(Optional.of(dish2), dish);
+        assertEquals("created a student", student2.get(), student);
+    }
 
-        Optional<Student> stud = studentService.findById(studentId);
+    @Test
+    public void findBy_invalidId(){
+        //execute
+        Student student = createStudent2(STUDENT_NAME);
 
-        //assertTrue("Same Id" , student.getId().equals(stud.get(id));
+        Long studentId = student.getId()+1L;
+
+        Optional<Student> student2 = studentService.findById(studentId);
+
+        //verify
+        if(student2.isPresent()){
+            assertFalse("Student found", true);
+        }else{
+            assertTrue("Student not found", true);
+        }
     }
 
     @Test
     public void delete() {
         // prepare
-        Student student = createStudent(STUDENT_NAME);
-        List<Student> students = this.studentService.findAll();
+        Student student = createStudent2(STUDENT_NAME);
+        List<Student> students = studentService.findAll();
         assertNotNull(students);
-        assertTrue("created customer in list", students.contains(student));
+        assertTrue("created dish in list", students.contains(student));
 
         // execute
         studentService.deleteById(student.getId());
 
         // verify
-        List<Student> students2 = studentService.findAll();
-        assertNotNull(students2);
-        assertFalse("deleted customer not in the list", students2.contains(student));
+        List<Student> student2 = studentService.findAll();
+        assertNotNull(student2);
+        assertFalse("deleted student not in the list", student2.contains(student));
     }
 
-//    @Test
-//    public void create(){
-//        //execute
-//        Student student = createStudent(STUDENT_NAME);
-//
-//        //verify
-//        List<Student> students = studentService.findAll();
-//        assertNotNull(students);
-//        assertTrue("created a student" ,students.contains(student));
-//    }
 
-//    @Test
-//    public void findById() {
-//        // prepare
-//        Student student = createStudent(STUDENT_NAME);
-//
-//        // execute
-//        Student student2 = studentService.findById(student.getId());
-//
-//        // verify
-//        assertTrue("created customer in findByFirstNameAndLastName", student.equals(student2));
-//    }
+    @Test
+    public void update() {
+        Student student = createStudent2(STUDENT_NAME);
+        student.setStudentName(STUDENT_NAME2);
+
+        studentService.save(student);
+
+        Optional<Student> student2 = studentService.findById(student.getId());
+
+        assertEquals("studentName", STUDENT_NAME2, student2.get().getStudentName());
+    }
+
+    @Test
+    public void update_invalid_dish() {
+        Student student = new Student();
+        student.setId(1L);
+        student.setStudentName("Henk");
+
+        studentService.save(student);
+
+        Optional<Student> student2 = studentService.findById(student.getId()+1L);
+
+        if(student2.isPresent()){
+            student2.get().setStudentName("Pieter");
+            assertFalse("studentName", STUDENT_NAME.equals(student2.get().getStudentName()));
+        }
+        else{
+            assertFalse("Student was not found, so not updated" , student2.isPresent() );
+        }
+    }
 
 
-    private Student createStudent(String studentName) {
+    private Student createStudent2(String studentName) {
         Student student = new Student();
         student.setStudentName(studentName);
         Student retval = studentService.save(student);
-//        assertNotNull(retval);
-//        assertNotNull(retval.getId());
-//        assertEquals("studentName", studentName, retval.getStudentName());
         return retval;
     }
-
 }

@@ -12,11 +12,14 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
-@Data
 @NoArgsConstructor
-public abstract class BaseStudent {
+public abstract class BaseStudent extends DomainObject {
 
     @Id
     @GeneratedValue
     private Long id;
+
+
+
+
 }

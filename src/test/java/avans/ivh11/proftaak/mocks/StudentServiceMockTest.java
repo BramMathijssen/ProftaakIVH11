@@ -2,82 +2,121 @@ package avans.ivh11.proftaak.mocks;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Domain.Student;
+import avans.ivh11.proftaak.Repository.DishRepository;
 import avans.ivh11.proftaak.Repository.StudentRepository;
 import avans.ivh11.proftaak.Service.StudentService;
+import avans.ivh11.proftaak.Service.impl.DishServiceImpl;
 import avans.ivh11.proftaak.Service.impl.StudentServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
 public class StudentServiceMockTest {
 
-    private static final String STUDENT_NAME = "Henkie";
+    private static final String STUDENT_NAME = "Karel";
+    private static final Long STUDENT_ID = 23L;
 
+    private static final String STUDENT_NAME2 = "Henk";
+    private static final Long STUDENT_ID2 = 24L;
+
+    //Mock the service dependencies(=StudentServiceImpl is dependent on studentRepo)
     @Mock
-    private StudentRepository studentRepository;
+    StudentRepository studentRepository;
 
+    //Mock the service which is to be tested (Can't be a interface)
     @InjectMocks
-    private StudentServiceImpl studentService;
+    StudentServiceImpl studentService;
+
+
+    //https://hellokoding.com/spring-boot-test-service-layer-example-with-mockitos-mock-and-injectmock/
+    @Test
+    public void create(){
+
+        //Arange
+        Student student = createStudent(STUDENT_ID, STUDENT_NAME);
+
+        List<Student> expectedStudents = Arrays.asList(student);
+
+        //Act
+        doReturn(expectedStudents).when(studentRepository).findAll(); //Argument passed to when has to be a Mock so dishRepository instead of dishService
+
+        List<Student> actualStudents = studentService.findAll();
+
+        //Assert
+        assertThat(actualStudents).isEqualTo(expectedStudents);
+    }
+
 
     @Test
-    public void create2(){
-//        Student student = new Student();
-//        student.setStudentName("Gekkie");
-//
-//        when(studentRepository.save(any(Student.class))).thenReturn(new Student());
-//
-//        Student created = studentService.save(student);
-//
-//        assertThat(created.getStudentName()).isSameAs(student.getStudentName());
+    public void findById(){
+        //Arrange
+        Student student = createStudent(STUDENT_ID, STUDENT_NAME);
 
+        //Act
+        Mockito.when(studentRepository.findById(STUDENT_ID)).thenReturn(Optional.of(student));
 
+        //Assert
+        assertThat(studentService.findById(STUDENT_ID)).isEqualTo(Optional.of(student));
 
-
-        //Student student = createStudent(STUDENT_NAME);
-
-        Student student = MakeStudent("Henk");
-
-        List<Student> expectedProducts = Arrays.asList(student);
-
-        doReturn(expectedProducts).when(studentService).findAll();
-
-        // when
-        List<Student> actualProducts = studentService.findAll();
-
-        // then
-        assertThat(actualProducts).isEqualTo(expectedProducts);
     }
 
-    private Student MakeStudent(String studentName){
+    @Test
+    public void findAllStudents(){
+        //Arrange
+        Student student1 = createStudent(STUDENT_ID , STUDENT_NAME);
+        Student student2 = createStudent(STUDENT_ID2, STUDENT_NAME2);
+
+        List<Student> studentList = new ArrayList<>();
+        studentList.add(student1);
+        studentList.add(student2);
+
+        //Act
+        Mockito.when(studentRepository.findAll()).thenReturn(studentList);
+
+        //Assert
+        assertThat(studentService.findAll()).isEqualTo(studentList);
+    }
+
+    @Test
+    public void deleteStudent(){
+        //Arrange
+        Student student = createStudent(STUDENT_ID, STUDENT_NAME);
+
+        //Act
+        Mockito.when(studentRepository.findById(STUDENT_ID)).thenReturn(Optional.of(student));
+        Mockito.when(studentRepository.existsById(student.getId())).thenReturn(false);
+
+        //Assert
+        assertFalse(studentRepository.existsById(student.getId()));
+
+    }
+
+    private Student createStudent(Long id, String studentName) {
         Student student = new Student();
+        student.setId(id);
         student.setStudentName(studentName);
-        studentService.save(student);
+
         return student;
     }
-
-//    private Student createStudent(String studentName) {
-//        Student student = new Student();
-//        student.setStudentName(studentName);
-//        Student retval = studentService.save(student);
-//        assertNotNull(retval);
-//        assertNotNull(retval.getId());
-//        assertEquals("studentName", studentName, retval.getStudentName());
-//        return retval;
-//    }
 
 
 }
