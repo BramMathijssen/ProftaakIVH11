@@ -29,6 +29,7 @@ public class Meal {
 
     private Calendar created = Calendar.getInstance();
 
+    //Can't have Fetchtype Lazy because it brings complications with the PUT/POST methods from the API
     @JoinColumn(name = "student_id")
     @ManyToOne
     @NotNull(message = "Please enter a cook")
