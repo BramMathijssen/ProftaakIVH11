@@ -1,8 +1,6 @@
 package avans.ivh11.proftaak.Domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +34,6 @@ public class Student extends BaseStudent {
     )
     @JsonBackReference
     private Set<Meal> meals = new HashSet<>();
-
 
 
     public int getAmountOfMeals() {

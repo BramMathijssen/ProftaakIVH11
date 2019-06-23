@@ -72,13 +72,13 @@ public class StudentController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView create(@Valid Student student, StudentSpecialties specialties, BindingResult result,
+    public ModelAndView create(@Valid Student student, BindingResult result,
                                RedirectAttributes redirect) {
         if (result.hasErrors()) {
             return new ModelAndView("students/form", "formErrors", result.getAllErrors());
         }
         student = this.studentRepository.save(student);
-        specialties = this.studentSpecialtiesRepository.save(specialties);
+        //specialties = this.studentSpecialtiesRepository.save(specialties);
         redirect.addFlashAttribute("globalMessage", "view.success");
         return new ModelAndView("redirect:/s/{student.id}", "student.id", student.getId());
     }
