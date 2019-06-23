@@ -13,17 +13,17 @@ import java.io.Serializable;
 @MappedSuperclass
 @Getter
 @Setter
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
-@ToString(includeFieldNames = true, of = { "id", "version" })
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+//@ToString(includeFieldNames = true, of = { "id", "version" })
 public abstract class DomainObject implements Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Version
-    @Setter(AccessLevel.NONE)
-    Long version;
+//    @Version
+//    @Setter(AccessLevel.NONE)
+//    Long version;
 
     /*
      * This hashCode() implementation violates an important property: - The id

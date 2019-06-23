@@ -1,5 +1,6 @@
 package avans.ivh11.proftaak.Domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -31,6 +32,7 @@ public class Dish extends DomainObject {
     private String dishRecipe;
 
     @ManyToMany(mappedBy = "dishesList")
+    @JsonBackReference
     private Set<Meal> mealsList = new HashSet<>();
     //private List<Meal> meals = new ArrayList<>();
 
