@@ -2,6 +2,7 @@ package avans.ivh11.proftaak.Domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
@@ -31,13 +32,15 @@ public class Meal {
     @JoinColumn(name = "student_id")
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull(message = "Please enter a cook")
-    @JsonBackReference
+    //@JsonBackReference
     //@JsonManagedReference Commenting this out resolved the content-type-application-jsoncharset-utf-8-not-supported error while doing a HTTP Post
+    @JsonIgnore
     private Student mealCook;
 
     @ManyToMany
     @NotEmpty(message="Atleast enter one dish")
-    @JsonManagedReference
+    //@JsonBackReference
+    //@JsonManagedReference Commenting this out resolved the content-type-application-jsoncharset-utf-8-not-supported error while doing a HTTP Post
     private Set<Dish> dishesList = new HashSet<>();
 
     @NotEmpty(message = "Summary is required")

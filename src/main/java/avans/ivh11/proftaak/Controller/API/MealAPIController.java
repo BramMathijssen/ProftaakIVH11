@@ -56,4 +56,14 @@ public class MealAPIController {
         logger.debug("Deleted Meal with id " + id);
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Meal> update(@PathVariable Long id, @Valid @RequestBody Meal meal) {
+        if (!mealService.findById(id).isPresent()) {
+            logger.error("Id " + id + " is not existed");
+            ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(mealService.save(meal));
+    }
 }

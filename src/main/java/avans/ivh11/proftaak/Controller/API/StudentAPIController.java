@@ -61,4 +61,14 @@ public class StudentAPIController {
         logger.debug("Deleted Student with id " + id);
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Student> update(@PathVariable Long id, @Valid @RequestBody Student student) {
+        if (!studentService.findById(id).isPresent()) {
+            logger.error("Id " + id + " is not existed");
+            ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(studentService.save(student));
+    }
 }

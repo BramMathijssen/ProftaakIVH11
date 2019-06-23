@@ -97,6 +97,7 @@ public class StudentController {
         return new ModelAndView("students/list", "students", students);
     }
 
+
     @GetMapping("modify/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView modifyForm(@PathVariable("id") Student student) {

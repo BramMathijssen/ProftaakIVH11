@@ -57,4 +57,16 @@ public class DishAPIController {
         logger.debug("Deleted Dish with id " + id);
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Dish> update(@PathVariable Long id, @Valid @RequestBody Dish dish) {
+        if (!dishService.findById(id).isPresent()) {
+            logger.error("Id " + id + " is not existed");
+            ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(dishService.save(dish));
+    }
+
+
 }
