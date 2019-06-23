@@ -30,11 +30,10 @@ public class Meal {
     private Calendar created = Calendar.getInstance();
 
     @JoinColumn(name = "student_id")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @NotNull(message = "Please enter a cook")
     //@JsonBackReference
     //@JsonManagedReference Commenting this out resolved the content-type-application-jsoncharset-utf-8-not-supported error while doing a HTTP Post
-    @JsonIgnore
     private Student mealCook;
 
     @ManyToMany
