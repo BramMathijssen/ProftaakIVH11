@@ -21,7 +21,7 @@ import java.util.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Meal {
+public class Meal extends DomainObject {
 
     @Id
     @GeneratedValue

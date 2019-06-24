@@ -21,9 +21,9 @@ public abstract class DomainObject implements Serializable {
     @GeneratedValue
     private Long id;
 
-//    @Version
-//    @Setter(AccessLevel.NONE)
-//    Long version;
+    @Version
+    @Setter(AccessLevel.NONE)
+    Long version;
 
     /*
      * This hashCode() implementation violates an important property: - The id
