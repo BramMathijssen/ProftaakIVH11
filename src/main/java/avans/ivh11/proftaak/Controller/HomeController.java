@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/", method = RequestMethod.GET)
 public class HomeController {
@@ -20,7 +22,7 @@ public class HomeController {
 
     @GetMapping
     public ModelAndView index(){
-//        createSupplies();
+        //createSupplies();
 
 
         return new ModelAndView("home/index");
@@ -36,12 +38,15 @@ public class HomeController {
 
         supplyRepository.save(supply);
 
+
         IngredientsSupply supply2 = new IngredientsSupply.Builder()
                 .ingredientName("Knolraap")
                 .pieces(1)
                 .build();
 
         supplyRepository.save(supply2);
+
+        //System.exit(0);
 
 
 

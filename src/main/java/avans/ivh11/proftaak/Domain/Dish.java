@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
+import javax.persistence.Version;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
@@ -15,11 +16,14 @@ import java.util.*;
 @Setter
 //@ToString(callSuper = true, includeFieldNames = true, of = { "dishName", "dishType", "dishRecipe" })
 @NoArgsConstructor
-public class Dish extends DomainObject {
+public class Dish  {
 
     @Id
     @GeneratedValue
     private Long id;
+
+    @Version
+    private Long version;
 
     private Calendar created = Calendar.getInstance();
 

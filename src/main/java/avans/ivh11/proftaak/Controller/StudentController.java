@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sun.rmi.runtime.Log;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -77,7 +78,14 @@ public class StudentController {
         if (result.hasErrors()) {
             return new ModelAndView("students/form", "formErrors", result.getAllErrors());
         }
+          //Serializable test: Running create() while createStudent() is running
+//        List<Student> students = studentService.findAll();
+//
+//        System.out.println("#students  made: " +
+//                students.size());
+
         student = this.studentRepository.save(student);
+
         //specialties = this.studentSpecialtiesRepository.save(specialties);
         redirect.addFlashAttribute("globalMessage", "view.success");
         return new ModelAndView("redirect:/s/{student.id}", "student.id", student.getId());
@@ -106,7 +114,21 @@ public class StudentController {
 
     public void createStudent(){
         Student student = new Student("Henk");
+
+          //Test input for ACID(Isolation)
+//        List<Student> students = studentService.findAll();
+//
+//        System.out.println("#students  made: " +
+//                students.size());
+
         studentRepository.save(student);
+
+         //Test input for ACID(Isolation)
+//        try {
+//            Thread.sleep(10000);
+//        } catch(InterruptedException e) {}
+
+        //System.exit(0);
     }
 
     private void decorateStudent(){

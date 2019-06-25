@@ -20,7 +20,6 @@ public interface StudentService {
 
     void deleteById(Long id);
 
-    Iterable<Student> findAllIteratable();
 
 
 }

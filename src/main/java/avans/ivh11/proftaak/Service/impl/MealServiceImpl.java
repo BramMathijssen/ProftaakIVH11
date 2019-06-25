@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,16 +21,18 @@ import java.util.Optional;
 
 @Service
 @NoArgsConstructor
+@Transactional
 public class MealServiceImpl implements MealService {
 
     @Autowired
     private MealRepository mealRepository;
 
-
+    @Transactional(readOnly = true)
     public ArrayList<Meal> getMealsList() {
         return (ArrayList<Meal>) this.mealRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Page<Meal> findPaginated(Pageable pageable) {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
@@ -49,6 +52,7 @@ public class MealServiceImpl implements MealService {
         return mealPage;
     }
 
+    @Transactional(readOnly = true)
     public List<Meal> findAll() {
         // MySQL and H2 return the restaurants of findAll() in different order
         // sorting the result makes the behavior less database vendor dependent
@@ -59,6 +63,7 @@ public class MealServiceImpl implements MealService {
         return mealRepository.save(meal);
     }
 
+    //@Transactional(readOnly = true)
     public Optional<Meal> findById(Long id) {
         return mealRepository.findById(id);
     }

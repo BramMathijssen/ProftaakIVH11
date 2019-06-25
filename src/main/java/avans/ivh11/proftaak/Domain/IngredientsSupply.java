@@ -3,6 +3,7 @@ package avans.ivh11.proftaak.Domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Map;
 
 @Entity
 public class IngredientsSupply {
@@ -74,6 +75,7 @@ public class IngredientsSupply {
         }
 
     }
+
 
 }
 

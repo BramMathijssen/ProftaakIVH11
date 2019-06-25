@@ -2,23 +2,28 @@ package avans.ivh11.proftaak.Controller;
 
 import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Repository.DishRepository;
+import avans.ivh11.proftaak.Service.DishService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/d")
 public class DishController {
     //Jenkins
     private final DishRepository dishRepository;
+    private final DishService dishService;
 
-    public DishController(DishRepository dishRepository) {
+    public DishController(DishRepository dishRepository, DishService dishService) {
         this.dishRepository = dishRepository;
+        this.dishService = dishService;
     }
 
     @GetMapping
@@ -62,6 +67,7 @@ public class DishController {
         Iterable<Dish> dishes = this.dishRepository.findAll();
         return new ModelAndView("dishes/list", "dishes", dishes);
     }
+
 
     @GetMapping("/modify/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")

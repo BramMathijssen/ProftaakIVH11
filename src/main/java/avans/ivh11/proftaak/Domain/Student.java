@@ -29,7 +29,8 @@ public class Student extends BaseStudent  {
     @OneToMany(
             mappedBy = "mealCook",
             cascade = CascadeType.REMOVE,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
     )
     @JsonBackReference
     private Set<Meal> meals = new HashSet<>();
@@ -77,6 +78,7 @@ public class Student extends BaseStudent  {
 
         return id.equals(other.getId());
     }
+
 
 }
 
