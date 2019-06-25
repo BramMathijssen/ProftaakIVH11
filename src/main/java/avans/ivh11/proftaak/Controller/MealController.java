@@ -118,10 +118,17 @@ public class MealController {
 
     @GetMapping("delete/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView delete(@PathVariable("id") Long id) {
+    public ModelAndView delete(@PathVariable("id") Long id, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
         this.mealRepository.deleteById(id);
-        Iterable<Meal> meals = this.mealRepository.findAll();
-        return new ModelAndView("meals/list", "meals", meals);
+
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(5);
+
+        Page<Meal> mealPage = mealService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+
+        model.addAttribute("mealPage", mealPage);
+
+        return new ModelAndView("meals/list", "mealPage", mealPage);
     }
 
     @GetMapping("modify/{id}")

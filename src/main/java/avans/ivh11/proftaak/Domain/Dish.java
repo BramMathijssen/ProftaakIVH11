@@ -34,11 +34,9 @@ public class Dish  {
     private String dishRecipe;
 
     //Default Lazy
-    @ManyToMany(mappedBy = "dishesList")
+    @ManyToMany(mappedBy = "dishesList" ,cascade = CascadeType.REMOVE)
     @JsonBackReference
     private Set<Meal> mealsList = new HashSet<>();
-    //private List<Meal> meals = new ArrayList<>();
-
 
     public String getDishName() {
         return dishName;
@@ -73,11 +71,6 @@ public class Dish  {
 
         return id.equals(other.getId());
     }
-
-
-//    could multiple dishPrice times amount of guests and store it as mealPrice total
-//    @NotNull(message = "Price is required.")
-//    private int dishPrice;
 
 
 }
