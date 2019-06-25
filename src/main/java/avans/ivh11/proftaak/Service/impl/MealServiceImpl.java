@@ -1,6 +1,5 @@
 package avans.ivh11.proftaak.Service.impl;
 
-import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Domain.Meal;
 import avans.ivh11.proftaak.Repository.MealRepository;
 import avans.ivh11.proftaak.Service.MealService;

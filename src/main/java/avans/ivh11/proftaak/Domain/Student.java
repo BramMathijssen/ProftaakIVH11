@@ -1,7 +1,6 @@
 package avans.ivh11.proftaak.Domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

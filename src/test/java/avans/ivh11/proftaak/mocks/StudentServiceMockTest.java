@@ -1,17 +1,10 @@
 package avans.ivh11.proftaak.mocks;
 
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
-import avans.ivh11.proftaak.Domain.Dish;
+import static org.junit.Assert.assertFalse;
+
 import avans.ivh11.proftaak.Domain.Student;
-import avans.ivh11.proftaak.Repository.DishRepository;
 import avans.ivh11.proftaak.Repository.StudentRepository;
-import avans.ivh11.proftaak.Service.StudentService;
-import avans.ivh11.proftaak.Service.impl.DishServiceImpl;
 import avans.ivh11.proftaak.Service.impl.StudentServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;

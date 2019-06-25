@@ -5,14 +5,12 @@ import avans.ivh11.proftaak.Repository.DishRepository;
 import avans.ivh11.proftaak.Service.DishService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/d")

@@ -1,18 +1,10 @@
 package avans.ivh11.proftaak.Domain;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.*;
@@ -36,7 +28,7 @@ public class Meal extends DomainObject {
     //@JsonManagedReference Commenting this out resolved the content-type-application-jsoncharset-utf-8-not-supported error while doing a HTTP Post
     private Student mealCook;
 
-    //Default Lazy
+    //Default Lazy.
     @ManyToMany
     @NotEmpty(message="Atleast enter one dish")
     //@JsonManagedReference Commenting this out resolved the content-type-application-jsoncharset-utf-8-not-supported error while doing a HTTP Post

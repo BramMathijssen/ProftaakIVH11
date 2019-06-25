@@ -8,10 +8,8 @@ import avans.ivh11.proftaak.Domain.StudentSpecialties;
 import avans.ivh11.proftaak.Repository.BaseStudentRepository;
 
 
-import avans.ivh11.proftaak.Repository.StudentRepository;
 import avans.ivh11.proftaak.Repository.StudentSpecialtiesRepository;
 import avans.ivh11.proftaak.Service.impl.StudentServiceImpl;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +17,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import sun.rmi.runtime.Log;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 

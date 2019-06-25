@@ -2,16 +2,11 @@ package avans.ivh11.proftaak.Controller.API;
 
 import avans.ivh11.proftaak.Controller.MealController;
 import avans.ivh11.proftaak.Domain.Student;
-import avans.ivh11.proftaak.Repository.StudentRepository;
 import avans.ivh11.proftaak.Service.StudentService;
-import avans.ivh11.proftaak.Service.impl.StudentServiceImpl;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

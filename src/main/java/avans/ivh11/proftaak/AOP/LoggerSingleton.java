@@ -7,11 +7,11 @@ public final class LoggerSingleton
 {
 
     // Static member holds only one instance of the
-    // SingletonExample class
+    // LoggerSingleton class
     private static LoggerSingleton singletonInstance;
 
     private final Logger logger = LoggerFactory.getLogger(LoggerSingleton.class);
-    // SingletonExample prevents any other class from instantiating
+    // LoggerSingleton prevents any other class from instantiating
     private LoggerSingleton() {
     }
     // Providing Global point of access
@@ -27,30 +27,4 @@ public final class LoggerSingleton
         System.out.println("Inside print Singleton");
     }
 }
-//    private static LoggerSingleton loggerInstance = null;
-//
-//    public static void log(String message)
-//    {
-//        loggerInstance.log(message);
-//    }
-//
-//    private LoggerSingleton()
-//    {
-//        getInstance();
-//    }
-//
-//    //prevent thread sync issues
-//    private synchronized static void createLoggerInstance ()
-//    {
-//        if (loggerInstance == null)
-//            loggerInstance = new LoggerSingleton();
-//    }
-//
-//    public static LoggerSingleton getInstance()
-//    {
-//        if (loggerInstance == null)
-//            createLoggerInstance();
-//        System.out.println("TEST FROM GETINSTANCE");
-//
-//        return loggerInstance;
-//    }
+

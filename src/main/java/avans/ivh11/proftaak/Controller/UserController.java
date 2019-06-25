@@ -1,13 +1,9 @@
 package avans.ivh11.proftaak.Controller;
 
-import avans.ivh11.proftaak.Domain.User;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.annotation.PostConstruct;
 
 @Controller
 @RequestMapping(value = "/u")

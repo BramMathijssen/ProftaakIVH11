@@ -1,26 +1,16 @@
 package avans.ivh11.proftaak.stubs;
 
-import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Domain.Student;
-import avans.ivh11.proftaak.Repository.StudentRepository;
-import avans.ivh11.proftaak.Service.DishService;
 import avans.ivh11.proftaak.Service.StudentService;
-import avans.ivh11.proftaak.Service.impl.StudentServiceImpl;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
-import org.junit.Test;
 
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.Assert.assertEquals;

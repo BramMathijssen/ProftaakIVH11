@@ -2,7 +2,6 @@ package avans.ivh11.proftaak.stubs;
 
 
 import avans.ivh11.proftaak.Domain.Dish;
-import avans.ivh11.proftaak.Domain.Student;
 import avans.ivh11.proftaak.Service.DishService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
