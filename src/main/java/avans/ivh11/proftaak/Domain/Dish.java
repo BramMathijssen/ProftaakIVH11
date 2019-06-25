@@ -35,6 +35,7 @@ public class Dish  {
 
     private String dishRecipe;
 
+    //Default Lazy
     @ManyToMany(mappedBy = "dishesList")
     @JsonBackReference
     private Set<Meal> mealsList = new HashSet<>();

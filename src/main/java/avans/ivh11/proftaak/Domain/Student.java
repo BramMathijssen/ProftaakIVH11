@@ -26,6 +26,7 @@ public class Student extends BaseStudent  {
     private Calendar created = Calendar.getInstance();
 
 
+    //Fetch eager voor transactionaliteit zie handson5
     @OneToMany(
             mappedBy = "mealCook",
             cascade = CascadeType.REMOVE,
