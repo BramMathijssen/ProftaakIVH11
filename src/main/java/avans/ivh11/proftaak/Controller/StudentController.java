@@ -128,9 +128,13 @@ public class StudentController {
 
     private void decorateStudent(){
         Optional<BaseStudent> concreteStudent = studentRepository.findById(1L);
-        concreteStudent.isPresent();
-        BaseStudent baseStudent1 = new StudentSpecialties(true, "Zuivel", concreteStudent.get());
-        studentRepository.save(baseStudent1);
+        if(concreteStudent.isPresent()){
+            BaseStudent baseStudent1 = new StudentSpecialties(true, "Zuivel", concreteStudent.get());
+            studentRepository.save(baseStudent1);
+        }else{
+            throw new RuntimeException("Expected exception in controller");
+        }
+
     }
 
 
