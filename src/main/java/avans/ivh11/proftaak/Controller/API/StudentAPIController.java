@@ -37,7 +37,11 @@ public class StudentAPIController {
             ResponseEntity.badRequest().build();
         }
 
-        return ResponseEntity.ok(student.get());
+        if(student.isPresent()){
+            return ResponseEntity.ok(student.get());
+        }else{
+            throw new RuntimeException("no student is present");
+        }
     }
 
     @PostMapping

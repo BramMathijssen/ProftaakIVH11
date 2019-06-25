@@ -37,7 +37,11 @@ public class MealAPIController {
             ResponseEntity.badRequest().build();
         }
 
-        return ResponseEntity.ok(meal.get());
+        if(meal.isPresent()){
+            return ResponseEntity.ok(meal.get());
+        }else{
+            throw new RuntimeException("no meal is present");
+        }
     }
 
     @PostMapping

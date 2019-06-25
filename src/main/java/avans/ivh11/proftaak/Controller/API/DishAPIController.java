@@ -38,7 +38,12 @@ public class DishAPIController {
             ResponseEntity.badRequest().build();
         }
 
-        return ResponseEntity.ok(dish.get());
+        if(dish.isPresent()){
+            return ResponseEntity.ok(dish.get());
+        }else{
+            throw new RuntimeException("no dish is present");
+        }
+
     }
 
     @PostMapping
