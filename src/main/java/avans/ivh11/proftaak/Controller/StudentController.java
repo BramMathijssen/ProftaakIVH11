@@ -46,10 +46,9 @@ public class StudentController {
 
     @GetMapping("{id}")
     public ModelAndView view(@PathVariable("id") Student student) {
-        //System.out.println("TEST");
+
         LoggerSingleton.getSingletonInstance().logSingleton("TEST FROM VIEW");
 
-        //LoggerSingleton.getInstance().log("test");
         return new ModelAndView("students/view", "student", student);
     }
 

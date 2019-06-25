@@ -25,12 +25,11 @@ public class Student extends BaseStudent  {
     private Calendar created = Calendar.getInstance();
 
 
-    //Fetch eager voor transactionaliteit zie handson5
+    //Default lazy
     @OneToMany(
             mappedBy = "mealCook",
             cascade = CascadeType.REMOVE,
-            orphanRemoval = true,
-            fetch = FetchType.EAGER
+            orphanRemoval = true
     )
     @JsonBackReference
     private Set<Meal> meals = new HashSet<>();

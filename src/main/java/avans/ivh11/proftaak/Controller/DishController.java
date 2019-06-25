@@ -1,5 +1,6 @@
 package avans.ivh11.proftaak.Controller;
 
+import avans.ivh11.proftaak.AOP.LoggerSingleton;
 import avans.ivh11.proftaak.Domain.Dish;
 import avans.ivh11.proftaak.Repository.DishRepository;
 import avans.ivh11.proftaak.Service.DishService;
@@ -15,7 +16,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/d")
 public class DishController {
-    //Jenkins
+
     private final DishRepository dishRepository;
     private final DishService dishService;
 
@@ -49,6 +50,9 @@ public class DishController {
             return new ModelAndView("dishes/form", "formErrors", result.getAllErrors());
         }
         dish = this.dishRepository.save(dish);
+
+        LoggerSingleton.getSingletonInstance().logSingleton("New Dish created");
+
         redirect.addFlashAttribute("globalMessage", "view.success");
         return new ModelAndView("redirect:/d/{dish.id}", "dish.id", dish.getId());
     }
