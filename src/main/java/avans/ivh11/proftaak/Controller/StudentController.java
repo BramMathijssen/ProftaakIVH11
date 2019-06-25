@@ -37,7 +37,7 @@ public class StudentController {
     }
 
     @GetMapping
-    public ModelAndView list(Student student){
+    public ModelAndView list(){
         createStudent();
         decorateStudent();
         Iterable<Student> students = studentService.findAll();
@@ -128,6 +128,7 @@ public class StudentController {
 
     private void decorateStudent(){
         Optional<BaseStudent> concreteStudent = studentRepository.findById(1L);
+        concreteStudent.isPresent();
         BaseStudent baseStudent1 = new StudentSpecialties(true, "Zuivel", concreteStudent.get());
         studentRepository.save(baseStudent1);
     }
