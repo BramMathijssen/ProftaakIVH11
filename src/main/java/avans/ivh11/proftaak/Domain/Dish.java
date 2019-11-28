@@ -14,7 +14,7 @@ import java.util.*;
 @Setter
 //@ToString(callSuper = true, includeFieldNames = true, of = { "dishName", "dishType", "dishRecipe" })
 @NoArgsConstructor
-public class Dish  {
+public class Dish   {
 
     @Id
     @GeneratedValue

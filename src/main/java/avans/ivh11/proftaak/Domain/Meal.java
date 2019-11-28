@@ -27,8 +27,8 @@ public class Meal extends DomainObject {
     @NotNull(message = "Please enter a cook")
     private Student mealCook;
 
-    //Default Lazy.
-    @ManyToMany
+    //Default Lazy
+    @ManyToMany(fetch = FetchType.LAZY)
     @NotEmpty(message="Atleast enter one dish")
     private Set<Dish> dishesList = new HashSet<>();
 

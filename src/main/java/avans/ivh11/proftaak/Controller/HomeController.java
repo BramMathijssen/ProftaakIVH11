@@ -19,6 +19,7 @@ public class HomeController {
         this.supplyRepository = supplyRepository;
     }
 
+    //test
     @GetMapping
     public ModelAndView index(){
         //createSupplies();

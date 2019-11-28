@@ -134,10 +134,7 @@ public class DishServiceTest {
         dish.setDishName(dishName);
         dish.setDishType(dishType);
         Dish retval = dishService.save(dish);
-//        assertNotNull(retval);
-//        assertNotNull(retval.getId());
-//        assertEquals("dishName", dishName, retval.getDishName());
-//        assertEquals("dishType", dishType, retval.getDishType());
+
         return retval;
     }
 }
