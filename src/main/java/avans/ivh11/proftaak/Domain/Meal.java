@@ -36,6 +36,7 @@ public class Meal extends DomainObject {
     private String mealSummary;
 
 
+    //test
     public String getDishNameByType(String dishType) {
 
         for (Dish dish : dishesList) {
